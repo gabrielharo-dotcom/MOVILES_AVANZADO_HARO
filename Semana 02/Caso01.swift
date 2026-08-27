@@ -44,3 +44,17 @@ for dia in 1...diasAtraso{
     }
     multaAcumulada += costoDia
 }
+
+//Tercer Commit: Resultados y estado del usuario respecto al préstamo
+print("Libro: \(tituloLibro)")
+print("Usuario: \(tipoUsuario)")
+print("F. Préstamo: \(fechaPrestamoStr)")
+print("F. Devolución: \(fechaDevolucionStr)")
+print("Días de atraso: \(diasAtraso)")
+print("Multa total acumulada: S/ \(String(format: "%.2f", multaAcumulada))")
+
+if diasAtraso >= 10 {
+print("ESTADO: ¡El usuario queda SUSPENDIDO de préstamos por acumular 10 o más días de atraso!")
+} else {
+print("ESTADO: Usuario habilitado.")
+}
