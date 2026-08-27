@@ -9,13 +9,13 @@ let alumno = readLine()!
 
 // commit del ingreso de datos
 print("Nota parcial ")
-let parcialNota = Double(readLine() ?? ) ?? 0
+let parcialNota = Double(readLine() ?? "") ?? 0
 
 print("Nota Trabajo ")
-let trabajoNota = Double(readLine() ?? ) ?? 0
+let trabajoNota = Double(readLine() ?? "") ?? 0
 
 print("Nota final ")
-let finalNota = Double(readLine() ?? ) ?? 0
+let finalNota = Double(readLine() ?? "") ?? 0
 
 // commit del calculo
 let promedioFinal = (parcialNota * parcial) + (trabajoNota * trabajo) + (finalNota * final)
