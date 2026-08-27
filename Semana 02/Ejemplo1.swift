@@ -16,9 +16,11 @@ let trabajoNota = Double(readLine() ?? ) ?? 0
 
 print("Nota final ")
 let finalNota = Double(readLine() ?? ) ?? 0
-// commit del calculo
 
+// commit del calculo
 let promedioFinal = (parcialNota * parcial) + (trabajoNota * trabajo) + (finalNota * final)
 
 // commit de mostrar los datos
-
+print("Resultados del alumno")
+print("Alumno: \(alumno)")
+print("Promedio Final: \(promedioFinal)")
