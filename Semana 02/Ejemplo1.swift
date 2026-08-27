@@ -7,8 +7,15 @@ let final = 0.4
 print("Nombre del alumno ")
 let alumno = readLine()!
 
+// commit del ingreso de datos
 print("Nota parcial ")
 let parcialNota = Double(readLine() ?? ) ?? 0
-// commit del ingreso de datos
+
+print("Nota Trabajo ")
+let trabajoNota = Double(readLine() ?? ) ?? 0
+
+print("Nota final ")
+let finalNota = Double(readLine() ?? ) ?? 0
 // commit del calculo
 // commit de mostrar los datos
+
