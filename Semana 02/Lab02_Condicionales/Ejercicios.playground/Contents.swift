@@ -111,3 +111,54 @@ if datosValidos { // Ejecuta los cálculos solamente cuando todos los datos son 
 } else { // Ejecuta esta alternativa cuando existe un precio o una cantidad inválida.
     print("Error: los precios no pueden ser negativos y las cantidades deben ser mayores que 0.") // Informa claramente por qué no se procesó la compra.
 } // Cierra la validación general de los datos del carrito
+
+// ==========================================
+// ===== EJERCICIO 7: JUEGO DE ADIVINANZA ===
+// ==========================================
+
+let numeroSecreto = 42 // Guarda el número exacto que el jugador debe adivinar.
+let intento1 = 15 // Primer intento simulado para evaluar la respuesta del sistema.
+let intento2 = 60 // Segundo intento simulado para evaluar la respuesta del sistema.
+let intento3 = 35 // Tercer intento simulado para evaluar la respuesta del sistema.
+let intento4 = 42 // Cuarto intento simulado donde se acierta el número secreto.
+let intento5 = 50 // Quinto intento simulado en caso de requerir continuar la iteración.
+
+var intentoActual = 1 // Lleva el control numérico del turno actual de adivinanza.
+var gano = false // Bandera booleana para registrar si el jugador acertó la cifra.
+
+print("=== JUEGO DE ADIVINANZA DE NÚMEROS ===") // Muestra el mensaje de bienvenida al minijuego.
+
+while intentoActual <= 5 && !gano { // Mantiene el bucle activo mientras queden intentos y no se haya ganado.
+    var intentoNumero = 0 // Inicializa la variable temporal que recibirá el número de cada turno.
+    
+    if intentoActual == 1 { // Verifica si el bucle está procesando el primer turno.
+        intentoNumero = intento1 // Asigna el valor fijado para el primer intento.
+    } else if intentoActual == 2 { // Verifica si el bucle está procesando el segundo turno.
+        intentoNumero = intento2 // Asigna el valor fijado para el segundo intento.
+    } else if intentoActual == 3 { // Verifica si el bucle está procesando el tercer turno.
+        intentoNumero = intento3 // Asigna el valor fijado para el tercer intento.
+    } else if intentoActual == 4 { // Verifica si el bucle está procesando el cuarto turno.
+        intentoNumero = intento4 // Asigna el valor fijado para el cuarto intento.
+    } else if intentoActual == 5 { // Verifica si el bucle está procesando el quinto turno.
+        intentoNumero = intento5 // Asigna el valor fijado para el quinto intento.
+    } // Cierra la estructura condicional de selección del intento actual.
+
+    if intentoNumero == numeroSecreto { // Comprueba si el número ingresado es exactamente igual al secreto.
+        print("Intento \(intentoActual): \(intentoNumero) -> ¡Correcto!") // Informa el acierto exitoso en la consola.
+        gano = true // Cambia la bandera a verdadero para terminar el bucle de inmediato.
+    } else if intentoNumero > numeroSecreto { // Comprueba si el valor ingresado es mayor al número secreto.
+        print("Intento \(intentoActual): \(intentoNumero) -> Muy alto") // Muestra la pista indicando que la cifra es alta.
+    } else { // Ejecuta este bloque si el número es menor al número secreto.
+        print("Intento \(intentoActual): \(intentoNumero) -> Muy bajo") // Muestra la pista indicando que la cifra es baja.
+    } // Cierra la evaluación de pistas del juego.
+
+    if !gano { // Comprueba si el jugador aún no ha adivinado el número.
+        intentoActual += 1 // Incrementa en 1 el contador para pasar al siguiente turno.
+    } // Cierra la actualización del contador de intentos.
+} // Cierra el bucle de iteración del minijuego.
+
+if gano { // Evalúa si la partida finalizó con una victoria del usuario.
+    print("¡Felicidades! Adivinaste el número en el intento \(intentoActual).") // Muestra el mensaje de felicitación e intentos utilizados.
+} else { // Ejecuta este bloque si se agotaron todos los turnos sin ganar.
+    print("Agotaste tus 5 intentos. El número secreto era: \(numeroSecreto).") // Notifica al jugador la derrota y revela el número.
+} // Cierra el mensaje final sobre el resultado del juego.
