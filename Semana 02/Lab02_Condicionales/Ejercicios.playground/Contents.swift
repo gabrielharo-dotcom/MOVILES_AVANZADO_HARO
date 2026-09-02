@@ -1,4 +1,4 @@
-import Foundation // (ojo el cambio lo vimos en clase... Atento!!!!)
+import Foundation // Cambiado a Foundation para compatibilidad directa con la Terminal
 
 // Docente Juan León S.
 // ===== EJERCICIO 1: CONDICIONALES =====
@@ -21,7 +21,6 @@ if edad >= 18 {
 
 // TODO 2: Clasificar una nota con else if
 let miNota = 16.0
-// Categorias: Excelente (18-20), Bueno (15-17), Aprobado (13-14), Desaprobado (0-12)
 if miNota >= 18.0 && miNota <= 20.0 {
     print("Excelente")
 } else if miNota >= 15.0 {
@@ -108,7 +107,10 @@ if esLunes && llueve {
 }
 // PREDICT 3: Imprime "Es lunes O llueve"
 
-// ===== EJERCICIO 2: SWITCH =====
+
+// ==========================================
+// ===== EJERCICIO 2: SWITCH ================
+// ==========================================
 
 // --- Ejemplo (ya resuelto): ---
 let diaSemana = 3
@@ -123,9 +125,9 @@ case 7: print("Domingo")
 default: print("Día inválido")
 }
 
-// TODO 4: Clasificar nota numérica a letra
-let nota = 16
-switch nota {
+// TODO 4: Clasificar nota numérica a letra (Renombrado a notaSwitch)
+let notaSwitch = 16
+switch notaSwitch {
 case 18...20:
     print("Excelente")
 case 15...17:
@@ -153,7 +155,6 @@ case "-":
 case "*":
     print("Resultado: \(num1 * num2)")
 case "/":
-    // TODO: verificar que num2 no sea 0 antes de dividir
     if num2 != 0 {
         print("Resultado: \(num1 / num2)")
     } else {
@@ -165,8 +166,6 @@ default:
 
 // TODO 6: Categoria de producto por precio
 let precio = 350.0
-// Categorias: Económico (0-99), Medio (100-499), Premium (500-999), Lujo (1000+)
-// Usa switch con rangos para clasificar
 switch precio {
 case 0..<100:
     print("Económico")
@@ -193,7 +192,7 @@ case 2:
 default:
     print("Mes inválido")
 }
-// PREDICT 4: Imprime "28 o 29 dias" porque 'mes' vale 2 y entra en ese caso.
+// PREDICT 4: Imprime "28 o 29 dias"
 
 let letra: Character = "a"
 switch letra {
@@ -202,32 +201,31 @@ case "a", "e", "i", "o", "u":
 default:
     print("Consonante")
 }
-// PREDICT 5: Imprime "Vocal" porque la variable 'letra' coincide con uno de los valores listados en el primer case.
+// PREDICT 5: Imprime "Vocal"
 
-// ===== EJERCICIO 3: FOR-IN =====
+
+// ==========================================
+// ===== EJERCICIO 3: FOR-IN ================
+// ==========================================
 
 // --- Ejemplo (ya resuelto): ---
-// Imprime los números del 1 al 5:
 for i in 1...5 {
     print("Número: \(i)")
 }
 
 // TODO 7: Tabla de multiplicar del 7
-// Imprime: 7 x 1 = 7, 7 x 2 = 14, ...
 for i in 1...10 {
     print("7 x \(i) = \(7 * i)")
 }
 
 // TODO 8: Sumatoria del 1 al 100
-// Suma todos los números del 1 al 100
 var suma = 0
 for i in 1...100 {
     suma += i
 }
-print("La suma del 1 al 100 es: \(suma)") // Debe dar 5050
+print("La suma del 1 al 100 es: \(suma)")
 
 // TODO 9: Calcular el factorial de 8
-// Factorial: 8! = 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1 = 40320
 var factorial = 1
 for i in 1...8 {
     factorial *= i
@@ -235,28 +233,20 @@ for i in 1...8 {
 print("8! = \(factorial)")
 
 // TODO 10: Patrón de asteriscos
-// Imprime este patrón usando String (repeating:count:):
-// *
-// **
-// ***
-// ****
-// *****
 for i in 1...5 {
     print(String(repeating: "*", count: i))
 }
 
 // ===== FIX: Encuentra los 2 errores =====
 
-// FIX 4: El código original evaluaba `i % 2 == 1` que filtraba números IMPARES.
-//        Para imprimir números PARES del 2 al 20 se debe usar `i % 2 == 0`.
+// FIX 4: Se corrigió la condición a `i % 2 == 0` para imprimir PARES
 for i in 1...20 {
     if i % 2 == 0 {
         print(i)
     }
 }
 
-// FIX 5: El rango `1...10` cuenta hacia adelante (1 al 10).
-//        Para cuenta regresiva (10 al 1) se usa `.reversed()` o la función `stride`.
+// FIX 5: Se usó `.reversed()` para contar hacia atrás del 10 al 1
 for i in (1...10).reversed() {
     print(i)
 }
@@ -268,28 +258,29 @@ for i in 1...5 {
     total += i
 }
 print(total)
-// PREDICT 6: Se ejecuta 5 veces. Imprime al final el valor de 15 (1+2+3+4+5).
+// PREDICT 6: Se ejecuta 5 veces. Imprime 15.
 
 var texto = ""
 for _ in 1...3 {
     texto += "Hola "
 }
 print(texto)
-// PREDICT 7: Realiza 3 iteraciones. El valor final de 'texto' es "Hola Hola Hola ".
-//            Se usa el guion bajo '_' en lugar de 'i' para indicarle a Swift que no necesitamos usar la variable del índice dentro del bucle.
+// PREDICT 7: Realiza 3 iteraciones. Imprime "Hola Hola Hola ".
 
-// ===== EJERCICIO 4: WHILE Y REPEAT-WHILE =====
+
+// ==========================================
+// ===== EJERCICIO 4: WHILE Y REPEAT-WHILE ==
+// ==========================================
 
 // --- Ejemplo (ya resuelto): ---
 var contador = 5
 while contador > 0 {
     print("Cuenta regresiva: \(contador)")
-    contador -= 1 // Resta 1 en cada vuelta
+    contador -= 1
 }
 print("¡Despegue!")
 
 // TODO 11: Ahorro mensual
-// Un alumno ahorra S/. 150 cada mes. ¿Cuántos meses necesita para juntar S/. 2000?
 var ahorro = 0.0
 var meses = 0
 let meta = 2000.0
@@ -301,37 +292,33 @@ while ahorro < meta {
 }
 print("Necesita \(meses) meses para juntar S/. \(meta)")
 
-// TODO 12: División sucesiva
-// Divide un número entre 2 repetidamente hasta que sea menor a 1
-var numero = 1000.0
+// TODO 12: División sucesiva (Renombrado a numeroDiv)
+var numeroDiv = 1000.0
 var divisiones = 0
 
-while numero >= 1 {
-    numero = numero / 2
+while numeroDiv >= 1 {
+    numeroDiv = numeroDiv / 2
     divisiones += 1
-    print("División (\(divisiones)): \(numero)")
+    print("División (\(divisiones)): \(numeroDiv)")
 }
 print("Se dividió \(divisiones) veces")
 
 // TODO 13: Validar datos con repeat-while
-// Simula pedir una nota hasta que sea válida (entre 0 y 20)
-let intento1 = 25 // Inválido: > 20
-let intento2 = -3 // Inválido: < 0
-let intento3 = 15 // Válido
+let intento1 = 25
+let intento2 = -3
+let intento3 = 15
 
 var intentoActual = intento1
 var esValido = false
 var numIntento = 1
 
 repeat {
-    // Verifica si intentoActual está entre 0 y 20
     if intentoActual >= 0 && intentoActual <= 20 {
         esValido = true
         print("Nota \(intentoActual) válida en intento \(numIntento)")
     } else {
         print("Nota \(intentoActual) inválida, intento \(numIntento)")
         
-        // Simula el siguiente intento
         if numIntento == 1 {
             intentoActual = intento2
         } else if numIntento == 2 {
@@ -348,55 +335,37 @@ while a > 1 {
     a = a / 3
 }
 print(a)
-// PREDICT 8: El bucle se ejecuta 4 veces (valores de 'a': 33, 11, 3, 1).
-//            El valor final que imprime 'a' es 1.
+// PREDICT 8: El bucle se ejecuta 4 veces. Imprime 1.
 
 var b = 0
 repeat {
     b += 1
 } while b < 0
 print(b)
-// PREDICT 9: Imprime 1. La estructura 'repeat-while' ejecuta el código de su bloque AL MENOS una vez antes de verificar la condición, por lo que incrementa 'b' a 1 aunque la condición 'b < 0' resulte falsa al final.
+// PREDICT 9: Imprime 1.
 
-// ===== EJERCICIO 5: CARRITO DE COMPRAS =====
 
-// --- Datos de productos (ya definidos):
-let prod1 = "Laptop"
-let precio1 = 3500.0
-let cant1 = 1
+// ==========================================
+// ===== EJERCICIO 5: CARRITO DE COMPRAS ====
+// ==========================================
 
-let prod2 = "Mouse"
-let precio2 = 45.50
-let cant2 = 2
+let prod1 = "Laptop"; let precio1 = 3500.0; let cant1 = 1
+let prod2 = "Mouse"; let precio2 = 45.50; let cant2 = 2
+let prod3 = "Teclado"; let precio3 = 120.00; let cant3 = 1
+let prod4 = "Monitor"; let precio4 = 890.00; let cant4 = 1
+let prod5 = "USB Cable"; let precio5 = 15.00; let cant5 = 3
 
-let prod3 = "Teclado"
-let precio3 = 120.00
-let cant3 = 1
-
-let prod4 = "Monitor"
-let precio4 = 890.00
-let cant4 = 1
-
-let prod5 = "USB Cable"
-let precio5 = 15.00
-let cant5 = 3
-
-// TODO 14: Calcula el subtotal de cada producto
+// TODO 14: Subtotales
 let sub1 = precio1 * Double(cant1)
 let sub2 = precio2 * Double(cant2)
 let sub3 = precio3 * Double(cant3)
 let sub4 = precio4 * Double(cant4)
 let sub5 = precio5 * Double(cant5)
 
-// TODO 15: Calcula el subtotal general
+// TODO 15: Subtotal general
 let subtotalGeneral = sub1 + sub2 + sub3 + sub4 + sub5
 
-// TODO 16: Aplica descuento según monto de compra
-// Reglas:
-// Compra > 5000  -> 15% de descuento
-// Compra > 2000  -> 10% de descuento
-// Compra >= 500  -> 5% de descuento
-// Compra < 500   -> sin descuento
+// TODO 16: Descuento según monto
 var porcentajeDescuento = 0.0
 
 if subtotalGeneral > 5000 {
@@ -413,11 +382,6 @@ let descuento = subtotalGeneral * porcentajeDescuento
 let subtotalConDescuento = subtotalGeneral - descuento
 
 // TODO 17: Categoría de cliente según monto
-// Usa switch con rangos para determinar la categoria:
-// 0 - 499: "Regular"
-// 500 - 1999: "Frecuente"
-// 2000 - 4999: "VIP"
-// 5000+: "Premium"
 let montoParaCategoria = Int(subtotalGeneral)
 var categoriaCliente = ""
 
@@ -432,11 +396,11 @@ default:
     categoriaCliente = "Premium"
 }
 
-// TODO 18: Calcula IGV y total
+// TODO 18: IGV y total
 let igv = subtotalConDescuento * 0.18
 let totalFinal = subtotalConDescuento + igv
 
-// TODO 19: Imprime el ticket de compra
+// TODO 19: Ticket de compra
 var separador = ""
 for _ in 1...40 {
     separador += "="
@@ -459,4 +423,4 @@ print("IGV (18%): S/. \(igv)")
 print(separador)
 print("TOTAL: S/. \(totalFinal)")
 print(separador)
-print("¡Gracias por su compra!")	
+print("¡Gracias por su compra!")
