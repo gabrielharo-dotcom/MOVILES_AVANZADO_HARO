@@ -1,91 +1,155 @@
 import Foundation
 
-let dateFormatter = DateFormatter()
-dateFormatter.dateFormat = "dd/MM/yyyy"
+let diasAlumno = 7
+let diasDocente = 15
+let diasAdministrador = 10
 
+
+let multaAlumno = 1.50
+let multaDocente = 2.00
+let multaAdministrador = 3.00
+
+
+// MARK: - INGRESO DE DATOS
+print("SISTEMA DE PRÉSTAMO DE LIBROS")
+
+print("")
 print("Título del libro:")
 let tituloLibro = readLine() ?? ""
 
-print("Tipo de Usuario (Alumno / Docente / Administrador):")
-let tipoUsuario = (readLine() ?? "").capitalized
 
-print("Fecha de Préstamo (dd/MM/yyyy):")
-let fechaPrestamoStr = readLine() ?? ""
+// MARK: - SELECCIONAR TIPO DE USUARIO
 
-print("Fecha de Devolución (dd/MM/yyyy):")
-let fechaDevolucionStr = readLine() ?? ""
+var tipoUsuario = ""
+var diasPermitidos = 0
+var multaPorDia = 0.0
 
-var diasLimitePermitidos = 7
-var multaBaseDiaria = 1.5
 
-if tipoUsuario == "Docente" {
-    diasLimitePermitidos = 15
-    multaBaseDiaria = 2.0
-} else if tipoUsuario == "Administrador" {
-    diasLimitePermitidos = 10
-    multaBaseDiaria = 3.0
-}
+while true {
 
-guard let fPrestamo = dateFormatter.date(from: fechaPrestamoStr),
-      let fDevolucion = dateFormatter.date(from: fechaDevolucionStr) else {
-    print("Error: Formato de fecha incorrecto. Use el formato dd/MM/yyyy.")
-    exit(0)
-}
+    print("")
+    print("Tipo de usuario:")
+    print("1. Alumno")
+    print("2. Docente")
+    print("3. Administrador")
 
-if fDevolucion < fPrestamo {
-    print("Error: La fecha de devolución no puede ser anterior a la fecha de préstamo.")
-    exit(0)
-}
+    print("")
+    print("Ingrese el tipo de usuario:")
 
-let componentesSolicitados = Calendar.current.dateComponents([.day], from: fPrestamo, to: fDevolucion)
-let diasSolicitados = componentesSolicitados.day ?? 0
+    tipoUsuario = readLine() ?? ""
 
-if diasSolicitados > diasLimitePermitidos {
-    print("\nPRÉSTAMO RECHAZADO: Como \(tipoUsuario), el límite máximo es de \(diasLimitePermitidos) días.")
-    print("Has solicitado \(diasSolicitados) días. El sistema no permite plazos tan grandes y el calendario de pago sería inviable.")
-    exit(0)
-}
 
-let fechaLimitePermitida = Calendar.current.date(byAdding: .day, value: diasLimitePermitidos, to: fPrestamo) ?? fPrestamo
+    switch tipoUsuario.lowercased() {
 
-let componentesAtraso = Calendar.current.dateComponents([.day], from: fechaLimitePermitida, to: fDevolucion)
-let diasAtraso = max(0, componentesAtraso.day ?? 0)
+    case "alumno":
 
-var multaAcumulada = 0.0
+        diasPermitidos = diasAlumno
+        multaPorDia = multaAlumno
+        tipoUsuario = "Alumno"
 
-print("CALENDARIO DE PAGO / MULTA ---")
-if diasAtraso > 0 {
-    print("Día | Fecha estimada | Multa del día | Acumulado")
-    print("-------------------------------------------------")
-    
-    for dia in 1...diasAtraso {
-        var costoDia = multaBaseDiaria
-        if dia >= 4 && dia <= 6 {
-            costoDia *= 1.5
-        } else if dia >= 7 {
-            costoDia *= 2.0
-        }
-        multaAcumulada += costoDia
-        
-        let fechaDiaAtraso = Calendar.current.date(byAdding: .day, value: dia, to: fechaLimitePermitida) ?? fechaLimitePermitida
-        let fechaStr = dateFormatter.string(from: fechaDiaAtraso)
-        
-        print("  \(dia) |    \(fechaStr)   |    S/ \(String(format: "%.2f", costoDia))   |  S/ \(String(format: "%.2f", multaAcumulada))")
+    case "docente":
+
+        diasPermitidos = diasDocente
+        multaPorDia = multaDocente
+        tipoUsuario = "Docente"
+
+    case "administrador":
+
+        diasPermitidos = diasAdministrador
+        multaPorDia = multaAdministrador
+        tipoUsuario = "Administrador"
+
+    default:
+
+        print("")
+        print("❌ ERROR: Tipo de usuario no válido.")
+        print("Ingrese Alumno, Docente o Administrador.")
+
+        continue
     }
-} else {
-    print("No hay días de atraso. El libro se devolvió a tiempo.")
+
+    break
 }
 
-print("RESULTADOS FINALES ---")
-print("Libro: \(tituloLibro)")
-print("Usuario: \(tipoUsuario)")
-print("F. Préstamo: \(fechaPrestamoStr)")
-print("F. Devolución: \(fechaDevolucionStr)")
-print("Días de atraso: \(diasAtraso)")
-print("Multa total a pagar: S/ \(String(format: "%.2f", multaAcumulada))")
+// MARK: - CONFIGURACIÓN DEL CALENDARIO
 
-if diasAtraso >= 10 {
-    print("ESTADO: ¡El usuario queda SUSPENDIDO de los préstamos por acumular 10 o más días de atraso!")
-} else {
-    print("ESTADO: Usuario habilitado o devolución procesada correctamente.")
-}
+let calendario = Calendar.current
+
+let formatoFecha = DateFormatter()
+
+formatoFecha.dateFormat = "dd/MM/yyyy"
+formatoFecha.locale = Locale(identifier: "es_PE")
+formatoFecha.calendar = calendario
+
+
+// MARK: - VARIABLES DE FECHAS
+
+var fechaPrestamo = Date()
+var fechaPrometida = Date()
+
+var fechaPrestamoTexto = ""
+var fechaPrometidaTexto = ""
+
+var diasSolicitados = 0
+
+
+// MARK: - INGRESO Y VALIDACIÓN DEL PRÉSTAMO
+
+while true {
+
+    print("DATOS DEL PRÉSTAMO")
+    print("")
+    print("Fecha de préstamo (dd/MM/yyyy):")
+
+    fechaPrestamoTexto = readLine() ?? ""
+
+
+    // Validar fecha de préstamo
+
+    guard let fechaPrestamoIngresada =
+            formatoFecha.date(from: fechaPrestamoTexto) else {
+
+        print("")
+        print("FECHA DE PRÉSTAMO NO VÁLIDA.")
+        print("Utiliza el formato dd/MM/yyyy.")
+
+        continue
+    }
+
+    fechaPrestamo = fechaPrestamoIngresada
+
+
+    // Fecha prometida
+
+    print("")
+    print("Fecha prometida de devolución (dd/MM/yyyy):")
+
+    fechaPrometidaTexto = readLine() ?? ""
+
+
+    // Validar fecha prometida
+
+    guard let fechaPrometidaIngresada =
+            formatoFecha.date(from: fechaPrometidaTexto) else {
+
+        print("")
+        print("FECHA PROMETIDA NO VÁLIDA.")
+        print("Utiliza el formato dd/MM/yyyy.")
+
+        continue
+    }
+
+    fechaPrometida = fechaPrometidaIngresada
+
+
+    // Validar orden de fechas
+
+    if fechaPrometida < fechaPrestamo {
+
+        print("")
+        print("ERROR")
+        print("La fecha prometida no puede ser anterior")
+        print("a la fecha de préstamo.")
+
+        continue
+    }
