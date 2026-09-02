@@ -1,4 +1,4 @@
-import UIKit // (ojo el cambio lo vimos en clase... Atento!!!!)
+import Foundation // (ojo el cambio lo vimos en clase... Atento!!!!)
 
 // Docente Juan León S.
 // ===== EJERCICIO 1: CONDICIONALES =====
