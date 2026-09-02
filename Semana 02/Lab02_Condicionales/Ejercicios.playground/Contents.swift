@@ -203,3 +203,77 @@ default:
     print("Consonante")
 }
 // PREDICT 5: Imprime "Vocal" porque la variable 'letra' coincide con uno de los valores listados en el primer case.
+
+// ===== EJERCICIO 3: FOR-IN =====
+
+// --- Ejemplo (ya resuelto): ---
+// Imprime los números del 1 al 5:
+for i in 1...5 {
+    print("Número: \(i)")
+}
+
+// TODO 7: Tabla de multiplicar del 7
+// Imprime: 7 x 1 = 7, 7 x 2 = 14, ...
+for i in 1...10 {
+    print("7 x \(i) = \(7 * i)")
+}
+
+// TODO 8: Sumatoria del 1 al 100
+// Suma todos los números del 1 al 100
+var suma = 0
+for i in 1...100 {
+    suma += i
+}
+print("La suma del 1 al 100 es: \(suma)") // Debe dar 5050
+
+// TODO 9: Calcular el factorial de 8
+// Factorial: 8! = 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1 = 40320
+var factorial = 1
+for i in 1...8 {
+    factorial *= i
+}
+print("8! = \(factorial)")
+
+// TODO 10: Patrón de asteriscos
+// Imprime este patrón usando String (repeating:count:):
+// *
+// **
+// ***
+// ****
+// *****
+for i in 1...5 {
+    print(String(repeating: "*", count: i))
+}
+
+// ===== FIX: Encuentra los 2 errores =====
+
+// FIX 4: El código original evaluaba `i % 2 == 1` que filtraba números IMPARES.
+//        Para imprimir números PARES del 2 al 20 se debe usar `i % 2 == 0`.
+for i in 1...20 {
+    if i % 2 == 0 {
+        print(i)
+    }
+}
+
+// FIX 5: El rango `1...10` cuenta hacia adelante (1 al 10).
+//        Para cuenta regresiva (10 al 1) se usa `.reversed()` o la función `stride`.
+for i in (1...10).reversed() {
+    print(i)
+}
+
+// ===== PREDICT: ¿Cuántas veces se ejecuta y qué imprime al final? =====
+
+var total = 0
+for i in 1...5 {
+    total += i
+}
+print(total)
+// PREDICT 6: Se ejecuta 5 veces. Imprime al final el valor de 15 (1+2+3+4+5).
+
+var texto = ""
+for _ in 1...3 {
+    texto += "Hola "
+}
+print(texto)
+// PREDICT 7: Realiza 3 iteraciones. El valor final de 'texto' es "Hola Hola Hola ".
+//            Se usa el guion bajo '_' en lugar de 'i' para indicarle a Swift que no necesitamos usar la variable del índice dentro del bucle.
