@@ -107,3 +107,99 @@ if esLunes && llueve {
     print("Ni lunes ni llueve")
 }
 // PREDICT 3: Imprime "Es lunes O llueve"
+
+// ===== EJERCICIO 2: SWITCH =====
+
+// --- Ejemplo (ya resuelto): ---
+let diaSemana = 3
+switch diaSemana {
+case 1: print("Lunes")
+case 2: print("Martes")
+case 3: print("Miércoles")
+case 4: print("Jueves")
+case 5: print("Viernes")
+case 6: print("Sábado")
+case 7: print("Domingo")
+default: print("Día inválido")
+}
+
+// TODO 4: Clasificar nota numérica a letra
+let nota = 16
+switch nota {
+case 18...20:
+    print("Excelente")
+case 15...17:
+    print("Bueno")
+case 13...14:
+    print("Aprobado")
+case 11...12:
+    print("Recuperación")
+case 0...10:
+    print("Desaprobado")
+default:
+    print("Nota invalida")
+}
+
+// TODO 5: Calculadora simple con switch
+let num1 = 20.0
+let num2 = 5.0
+let operacion = "+"
+
+switch operacion {
+case "+":
+    print("Resultado: \(num1 + num2)")
+case "-":
+    print("Resultado: \(num1 - num2)")
+case "*":
+    print("Resultado: \(num1 * num2)")
+case "/":
+    // TODO: verificar que num2 no sea 0 antes de dividir
+    if num2 != 0 {
+        print("Resultado: \(num1 / num2)")
+    } else {
+        print("Error: No se puede dividir entre cero")
+    }
+default:
+    print("Operación no válida")
+}
+
+// TODO 6: Categoria de producto por precio
+let precio = 350.0
+// Categorias: Económico (0-99), Medio (100-499), Premium (500-999), Lujo (1000+)
+// Usa switch con rangos para clasificar
+switch precio {
+case 0..<100:
+    print("Económico")
+case 100..<500:
+    print("Medio")
+case 500..<1000:
+    print("Premium")
+case 1000...:
+    print("Lujo")
+default:
+    print("Precio inválido")
+}
+
+// ===== PREDICT: ¿Qué imprime? =====
+
+let mes = 2
+switch mes {
+case 1, 3, 5, 7, 8, 10, 12:
+    print("31 dias")
+case 4, 6, 9, 11:
+    print("30 dias")
+case 2:
+    print("28 o 29 dias")
+default:
+    print("Mes inválido")
+}
+// PREDICT 4: Imprime "28 o 29 dias" porque 'mes' vale 2 y entra en ese caso.
+
+let letra: Character = "a"
+switch letra {
+case "a", "e", "i", "o", "u":
+    print("Vocal")
+default:
+    print("Consonante")
+}
+// PREDICT 5: Imprime "Vocal" porque la variable 'letra' coincide con uno de los valores listados en el primer case.
