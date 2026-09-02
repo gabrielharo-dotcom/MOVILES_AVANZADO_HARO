@@ -1,48 +1,45 @@
-# Prompts utilizados - Laboratorio 02
+# Prompts utilizados - Laboratorio 02 (Rama: ai-assisted)
 
 ## Herramienta de IA utilizada
-[GEMINI PRO]
-
-## Ejercicio 6: Carrito mejorado
-### Prompt (estructura CTRFE):
-- **CONTEXTO:** Desarrollo de un script en Swift Playgrounds para la materia Programación en Móviles Avanzado.
-- **TAREA:** Extender las funcionalidades del ejercicio 5 del carrito de compras simplificado.
-- **RESTRICCIONES:** 
-  1. No utilizar arrays ni diccionarios (aún no se han cubierto en el curso). Usa únicamente variables simples, condicionales `if/else`, `switch` y bucles.
-  2. Comenta **CADA LÍNEA** del código explicando detalladamente qué hace.
-- **FORMATO:** Código Swift listo para ejecutar en Xcode Playground.
-- **EJEMPLO:** `let precio1 = 3500.0 // Almacena el precio base del producto Laptop`
-
-### Requisitos a implementar:
-1. Descuento por cantidad: si compra 3 o más unidades del mismo producto, aplicar 5% extra en ese producto.
-2. Cupón de descuento: si el código del cupón es "DESCUENTO20", aplicar 20% adicional al total.
-3. Envío gratis: si el total supera S/. 3000, el envío es gratis. Si no, cuesta S/. 25.00.
-4. Puntos de fidelidad: por cada S/. 100 de compra, el cliente gana 1 punto. Mostrar puntos ganados.
-5. Validación: si algún precio es negativo o alguna cantidad es 0, mostrar error.
-
-### ¿Funcionó a la primera?
-Sí, generó la lógica completa respetando las restricciones de no usar colecciones.
-
-### ¿La IA usó algo que no conocías?
-No, se mantuvo en el scope del laboratorio 02.
+- ChatGPT / Claude / Gemini
 
 ---
 
-## Ejercicio 7: Juego de adivinanza
+## Ejercicio 6: Carrito Mejorado con IA
 ### Prompt (estructura CTRFE):
-- **CONTEXTO:** Simulación de juego en Swift Playgrounds.
-- **TAREA:** Crear un mini juego de adivinanza de números usando variables fijas para los intentos.
+- **CONTEXTO:** Desarrollo de un laboratorio en Swift Playgrounds para la materia Programación en Móviles Avanzado. Se requiere implementar la lógica de negocio extendida para un carrito de compras.
+- **TAREA:** Crear un script en Swift que procese la compra de 5 productos distintos aplicando descuentos por cantidad, validación de cupones, cálculo de costo de envío, impuestos (IGV) y puntos de fidelidad.
 - **RESTRICCIONES:** 
-  1. Número secreto fijo (ejemplo: 42).
-  2. Simular 5 intentos con variables (`intento1`, `intento2`, etc.).
-  3. Usar un bucle `while` para recorrer los intentos.
-  4. Mostrar si el intento es "Muy alto", "Muy bajo" o "¡Correcto!".
-  5. Contar cuántos intentos se utilizaron y mostrar si perdió al agotar los 5 intentos.
-  6. Comentar **CADA LÍNEA** del código.
-- **FORMATO:** Código ejecutable en Swift.
+  1. No utilizar colecciones (arrays, diccionarios ni tuplas), únicamente variables y constantes simples.
+  2. Incluir una estructura de validación inicial para asegurar que los precios no sean negativos y las cantidades sean mayores a 0.
+  3. Formatear las salidas de los importes a 2 decimales usando `String(format: "%.2f", ...)`.
+  4. Comentar **CADA LÍNEA** del código explicando detalladamente qué hace.
+- **FORMATO:** Código fuente ejecutable en Swift y compatible con la Terminal (`swift`).
+- **EJEMPLO DE SALIDA:** Un ticket estructurado de compra impreso en consola.
 
 ### ¿Funcionó a la primera?
-Sí, la simulación iterativa con `while` manejó correctamente la salida anticipada.
+Sí, la estructura condicional manejó de forma adecuada los subtotales e imprimió el ticket con el formato exacto de decimales.
 
 ### ¿La IA usó algo que no conocías?
-Se verificó el uso del flag booleano de corte en el bucle.
+El uso de `String(format: "%.2f", ...)` junto con `import Foundation` para limitar los decimales en la consola de Swift CLI.
+
+---
+
+## Ejercicio 7: Juego de Adivinanza de Números
+### Prompt (estructura CTRFE):
+- **CONTEXTO:** Simulación interactiva de un minijuego en Swift Playgrounds sin interacción de consola activa (`readLine`).
+- **TAREA:** Construir una simulación del juego "Adivina el número secreto" que evalúe secuencialmente los intentos de un usuario.
+- **RESTRICCIONES:** 
+  1. Definir un número secreto constante.
+  2. Simular exactamente 5 intentos mediante variables fijas (`intento1`, `intento2`, etc.).
+  3. Controlar la ejecución mediante un bucle `while` usando un contador (`intentoActual`) y una bandera booleana (`gano`) para detener la ejecución inmediatamente al acertar.
+  4. Imprimir si cada intento fue "Muy alto", "Muy bajo" o "¡Correcto!".
+  5. Mostrar un mensaje de felicitaciones indicando el número de intentos si gana, o un mensaje de derrota revelando el número secreto si agota los 5 turnos.
+  6. Comentar **CADA LÍNEA** del código.
+- **FORMATO:** Código Swift listo para compilar y ejecutar.
+
+### ¿Funcionó a la primera?
+Sí, el control del bucle `while` combinando la bandera `!gano` funcionó correctamente para cortar el proceso al adivinar en el cuarto intento.
+
+### ¿La IA usó algo que no conocías?
+No, se ajustó completamente a las estructuras condicionales `if/else`, variables escalares y bucles `while` vistos en clase.
