@@ -44,6 +44,7 @@
 		C0F0FEB73047CA310085AF71 /* Lab02_CondicionalesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lab02_CondicionalesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F0FEBB3047CA310085AF71 /* Lab02_CondicionalesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab02_CondicionalesUITests.swift; sourceTree = "<group>"; };
 		C0F0FEBD3047CA310085AF71 /* Lab02_CondicionalesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab02_CondicionalesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C0F0FECA3047CA8B0085AF71 /* Ejercicios.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Ejercicios.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		C0F0FE9F3047CA290085AF71 /* Lab02_Condicionales */ = {
 			isa = PBXGroup;
 			children = (
+				C0F0FECA3047CA8B0085AF71 /* Ejercicios.playground */,
 				C0F0FEA03047CA290085AF71 /* Lab02_CondicionalesApp.swift */,
 				C0F0FEA23047CA290085AF71 /* ContentView.swift */,
 				C0F0FEA43047CA300085AF71 /* Assets.xcassets */,
