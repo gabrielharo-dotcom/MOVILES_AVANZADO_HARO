@@ -3,11 +3,13 @@ import Foundation
 let diasAlumno = 7
 let diasDocente = 15
 let diasAdministrador = 10
+let diasCoordinador = 15
 
 
 let multaAlumno = 1.50
 let multaDocente = 2.00
 let multaAdministrador = 3.00
+let multaCoordinador = 4.00
 
 
 // MARK: - INGRESO DE DATOS
@@ -32,6 +34,7 @@ while true {
     print("1. Alumno")
     print("2. Docente")
     print("3. Administrador")
+    print("4. Coordinador")
 
     print("")
     print("Ingrese el tipo de usuario:")
@@ -41,28 +44,34 @@ while true {
 
     switch tipoUsuario.lowercased() {
 
-    case "alumno":
+    case "alumno","1":
 
         diasPermitidos = diasAlumno
         multaPorDia = multaAlumno
         tipoUsuario = "Alumno"
 
-    case "docente":
+    case "docente","2":
 
         diasPermitidos = diasDocente
         multaPorDia = multaDocente
         tipoUsuario = "Docente"
 
-    case "administrador":
+    case "administrador","3":
 
         diasPermitidos = diasAdministrador
         multaPorDia = multaAdministrador
         tipoUsuario = "Administrador"
+        
+    case "coordinador","4":
+        
+        diasPermitidos = diasCoordinador
+        multaPorDia = multaCoordinador
+        tipoUsuario = "Coordinador"
 
     default:
 
         print("")
-        print("❌ ERROR: Tipo de usuario no válido.")
+        print("ERROR: Tipo de usuario no válido.")
         print("Ingrese Alumno, Docente o Administrador.")
 
         continue
