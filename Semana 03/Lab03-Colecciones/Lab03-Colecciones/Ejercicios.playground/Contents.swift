@@ -1,5 +1,6 @@
 // Desarrollado por: Gabriel Haro
 // ==========================================
+import Foundation
 // TODO 1: Registro de 5 alumnos
 // ==========================================
 print("\n--- TODO 1: Registro de Alumnos ---")
