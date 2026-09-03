@@ -86,3 +86,68 @@ print(lista.count) // PREDICT 2: 5
 var nombres = ["Ana", "Carlos", "Beto"]
 print(nombres.sorted()) // PREDICT 3: ["Ana", "Beto", "Carlos"]
 print(nombres)          // PREDICT 4: ["Ana", "Carlos", "Beto"]
+
+// ==========================================
+// Ejercicio 2: Diccionarios
+// ==========================================
+
+// ==========================================
+// TODO 4: Catálogo de productos
+// ==========================================
+print("\n--- TODO 4: Registro de Productos ---")
+var productos: [String: Double] = [:]
+
+for i in 1...4 {
+    print("Producto \(i) Nombre:")
+    let nombre = readLine() ?? ""
+    print("Precio:")
+    let precio = Double(readLine() ?? "") ?? 0.0
+    productos[nombre] = precio
+}
+
+// ==========================================
+// TODO 5: Mostrar catálogo
+// ==========================================
+print("\n--- TODO 5: Catálogo de Productos ---")
+print("===== CATÁLOGO =====")
+for (nombre, precio) in productos {
+    print("\(nombre): S/. \(precio)")
+}
+
+// ==========================================
+// TODO 6: Valor total del catálogo
+// ==========================================
+print("\n--- TODO 6: Valor Total ---")
+var valorTotal = 0.0
+for (_, precio) in productos {
+    valorTotal += precio
+}
+print("Valor total: S/. \(valorTotal)")
+
+// ==========================================
+// TODO 7: Buscar un producto
+// ==========================================
+print("\n--- TODO 7: Buscar Producto ---")
+print("Buscar producto:")
+let buscarProd = readLine() ?? ""
+
+if let precioEncontrado = productos[buscarProd] {
+    print("\(buscarProd) cuesta S/. \(precioEncontrado)")
+} else {
+    print("Producto no encontrado")
+}
+
+// ==========================================
+// ANALYZE: Análisis de código
+// ==========================================
+print("\n--- ANALYZE ---")
+var edades: [String: Int] = ["Ana": 20, "Luis": 22, "María": 19]
+var mayores: [String] = []
+
+for (nombre, edad) in edades {
+    if edad >= 21 {
+        mayores.append(nombre)
+    }
+}
+print("Mayores de 21: \(mayores)")
+// ANALYZE 1: Recorre el diccionario 'edades', evalúa cuáles tienen una edad mayor o igual a 21 (en este caso sólo "Luis": 22) y agrega sus nombres al arreglo 'mayores'. Imprime: Mayores de 21: ["Luis"]
