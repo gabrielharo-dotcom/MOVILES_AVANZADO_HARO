@@ -151,3 +151,61 @@ for (nombre, edad) in edades {
 }
 print("Mayores de 21: \(mayores)")
 // ANALYZE 1: Recorre el diccionario 'edades', evalúa cuáles tienen una edad mayor o igual a 21 (en este caso sólo "Luis": 22) y agrega sus nombres al arreglo 'mayores'. Imprime: Mayores de 21: ["Luis"]
+
+// ==========================================
+// Ejercicio 3: Sets
+// ==========================================
+
+// ==========================================
+// TODO 8: Eliminar duplicados
+// ==========================================
+print("\n--- TODO 8: Eliminar Duplicados ---")
+var numerosDuplicados: [Int] = []
+
+for i in 1...8 {
+    print("Número \(i):")
+    let n = Int(readLine() ?? "") ?? 0
+    numerosDuplicados.append(n)
+}
+
+print("Con duplicados: \(numerosDuplicados)")
+let sinDuplicados = Array(Set(numerosDuplicados)).sorted()
+print("Sin duplicados: \(sinDuplicados)")
+
+// ==========================================
+// TODO 9: Comparar asistencia
+// ==========================================
+print("\n--- TODO 9: Comparar Asistencia ---")
+var lunes: Set<String> = []
+var martes: Set<String> = []
+
+print("=== Asistencia Lunes ===")
+for i in 1...4 {
+    print("Alumno \(i) Lunes:")
+    let nombre = readLine() ?? ""
+    lunes.insert(nombre)
+}
+
+print("\n=== Asistencia Martes ===")
+for i in 1...4 {
+    print("Alumno \(i) Martes:")
+    let nombre = readLine() ?? ""
+    martes.insert(nombre)
+}
+
+print("\nAsistieron ambos días: \(lunes.intersection(martes))")
+print("Solo asistieron lunes: \(lunes.subtracting(martes))")
+print("Solo asistieron martes: \(martes.subtracting(lunes))")
+
+// ==========================================
+// PREDICT: Predicción de resultados
+// ==========================================
+let a: Set = [1, 2, 3, 4, 5]
+let b: Set = [4, 5, 6, 7, 8]
+
+print(a.intersection(b))       // PREDICT 5: [4, 5]
+print(a.union(b).count)        // PREDICT 6: 8
+print(a.subtracting(b))       // PREDICT 7: [1, 2, 3]
+
+var repetidos: Set = ["A", "B", "A", "C", "B"]
+print(repetidos.count)         // PREDICT 8: 3
