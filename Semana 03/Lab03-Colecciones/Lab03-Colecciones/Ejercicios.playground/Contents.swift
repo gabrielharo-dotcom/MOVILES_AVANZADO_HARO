@@ -93,3 +93,105 @@ if conteoNotasTotales > 0 { // Valida que existan datos cargados para evitar div
 } else { // Si no se procesó ningún registro
     print("No se ingresaron datos suficientes para calcular estadísticas.") // Alerta por falta de datos
 } // Fin de la validación de estadísticas
+
+// Desarrollado por: Gabriel Haro
+// Ejercicio 7: Inventario con menú (con IA)
+
+// Solicita al usuario la cantidad inicial de productos a registrar en el inventario
+print("¿Cuántos productos registrará en el inventario inicial?") // Imprime instrucción en la consola
+let cantidadProductos = Int(readLine() ?? "") ?? 0 // Lee la entrada del usuario y la convierte a Int con fallback a 0
+
+// Diccionarios principales para estructurar la base de datos en memoria del inventario
+var preciosInventario: [String: Double] = [:] // Almacena el nombre del producto como clave y su precio como valor
+var stocksInventario: [String: Int] = [:] // Almacena el nombre del producto como clave y su stock como valor
+
+// Bucle para poblar los productos iniciales ingresados por el usuario
+for i in 1...cantidadProductos { // Ejecuta un bucle cerrado desde 1 hasta el total indicado
+    print("\n--- Registro de Producto \(i) ---") // Título del bloque de registro para el producto actual
+    print("Nombre del producto:") // Pide el nombre descriptivo del ítem
+    let nombreProd = readLine() ?? "" // Guarda la cadena recibida desde la consola de comandos
+    
+    print("Precio del producto (S/.):") // Pide el costo monetario unitario
+    let precioProd = Double(readLine() ?? "") ?? 0.0 // Convierte el texto capturado a Double flotante
+    
+    print("Stock disponible (unidades):") // Pide la cantidad física disponible en almacén
+    let stockProd = Int(readLine() ?? "") ?? 0 // Convierte la entrada a un número entero
+    
+    preciosInventario[nombreProd] = precioProd // Inserta el precio asociado a la clave en el diccionario de precios
+    stocksInventario[nombreProd] = stockProd // Inserta el stock asociado a la clave en el diccionario de stocks
+} // Fin del bucle interactivo de carga inicial
+
+// Variable de control booleana para mantener activo el menú interactivo while
+var continuarEnMenu = true // Define el estado inicial del ciclo de opciones del menú
+
+// Bucle principal para despliegue y navegación del menú interactivo de gestión
+while continuarEnMenu { // Se ejecutará continuamente mientras continuarEnMenu sea verdadero
+    print("\n==========================================") // Separador estético para el menú
+    print("      MENÚ DE GESTIÓN DE INVENTARIO       ") // Título del menú interactivo
+    print("==========================================") // Separador inferior del encabezado
+    print("1) Ver inventario completo") // Opción para listar todos los artículos registrados
+    print("2) Buscar producto por nombre") // Opción para consultar el estado de un artículo
+    print("3) Filtrar productos con stock bajo (< 5)") // Opción para ver alertas de reposición
+    print("4) Calcular valor total del inventario") // Opción para reporte económico global
+    print("5) Salir del programa") // Opción para finalizar el ciclo de control
+    print("Seleccione una opción (1-5):") // Mensaje de solicitud de opción al usuario
+    
+    let opcionSeleccionada = readLine() ?? "" // Lee la opción tipeada por el usuario
+    
+    switch opcionSeleccionada { // Evalúa la opción ingresada contra los casos soportados
+    case "1": // Caso para listar el contenido total del almacén
+        print("\n--- INVENTARIO COMPLETO ---") // Encabezado de la lista general
+        if preciosInventario.isEmpty { // Verifica si no existen productos guardados
+            print("El inventario está actualmente vacío.") // Notifica la falta de datos
+        } else { // Si existen productos guardados en los diccionarios
+            for (nombre, precio) in preciosInventario { // Recorre el diccionario extraendo clave y precio
+                let stock = stocksInventario[nombre] ?? 0 // Obtiene el stock correspondiente de forma segura
+                print("• Producto: \(nombre) | Precio: S/. \(precio) | Stock: \(stock) unidades") // Muestra la línea
+            } // Fin del recorrido del catálogo
+        } // Fin de validación de inventario vacío
+        
+    case "2": // Caso para realizar búsquedas específicas por nombre
+        print("\n--- BÚSQUEDA DE PRODUCTO ---") // Encabezado de la herramienta de búsqueda
+        print("Ingrese el nombre del producto a buscar:") // Pide el criterio de búsqueda
+        let busqueda = readLine() ?? "" // Guarda el término tipeado por el cliente
+        
+        if let precioEncontrado = preciosInventario[busqueda] { // Búsqueda segura en el diccionario de precios
+            let stockEncontrado = stocksInventario[busqueda] ?? 0 // Búsqueda del stock asociado
+            print("✓ Encontrado: \(busqueda)") // Notifica el hallazgo exitoso
+            print("  Precio unitario: S/. \(precioEncontrado)") // Imprime el precio unitario
+            print("  Stock disponible: \(stockEncontrado) unidades") // Imprime las unidades disponibles
+        } else { // En caso la clave no exista dentro del diccionario
+            print("✕ El producto '\(busqueda)' no existe en el inventario.") // Mensaje de error en búsqueda
+        } // Fin de evaluación de la búsqueda
+        
+    case "3": // Caso para reporte de alertas por inventario reducido
+        print("\n--- PRODUCTOS CON STOCK BAJO (< 5) ---") // Título del reporte crítico
+        var encontradosBajos = 0 // Contador para verificar si se halló al menos uno
+        for (nombre, stock) in stocksInventario { // Recorre los elementos del diccionario de stocks
+            if stock < 5 { // Evalúa la condición de vulnerabilidad de stock
+                let precio = preciosInventario[nombre] ?? 0.0 // Recupera el precio asociado
+                print("⚠️ Alerta: \(nombre) | Stock actual: \(stock) unidades | Precio: S/. \(precio)") // Muestra alerta
+                encontradosBajos += 1 // Incrementa el contador de coincidencias
+            } // Fin de evaluación de umbral
+        } // Fin del recorrido de stocks
+        if encontradosBajos == 0 { // Si no hubo ningún producto con stock menor a 5
+            print("No se encontraron productos con stock crítico (todos tienen >= 5 unidades).") // Confirmación de stock sano
+        } // Fin de validación de hallazgos
+        
+    case "4": // Caso para cálculo del valor acumulado monetario
+        print("\n--- VALOR TOTAL DEL INVENTARIO ---") // Encabezado del balance contable
+        var sumaTotalValor = 0.0 // Acumulador numérico en coma flotante
+        for (nombre, precio) in preciosInventario { // Recorre los precios de los productos
+            let stock = stocksInventario[nombre] ?? 0 // Asocia la cantidad de unidades en existencia
+            sumaTotalValor += (precio * Double(stock)) // Multiplica precio por cantidad y acumula
+        } // Fin del cálculo global
+        print("El valor económico total acumulado en el almacén es: S/. \(sumaTotalValor)") // Imprime el balance final
+        
+    case "5": // Caso de salida ordenada de la aplicación
+        print("\nSaliendo del sistema de inventario... ¡Hasta luego!") // Mensaje de despedida
+        continuarEnMenu = false // Cambia la bandera para romper el ciclo del bucle while
+        
+    default: // Control de entradas inválidas por parte del usuario
+        print("\nOpción no válida. Por favor, ingrese un número del 1 al 5.") // Notificación de selección errónea
+    } // Fin del bloque de control switch
+} // Fin del bucle interactivo del menú while
