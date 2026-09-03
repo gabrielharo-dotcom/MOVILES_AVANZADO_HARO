@@ -195,15 +195,19 @@ var multaTotal = 0.0
 
 if diasAtraso > 0 {
     for dia in 1...diasAtraso {
+        var porcentajeDia = 0.0
+
         if dia <= 3 {
-            multaTotal += 0.0
+            porcentajeDia = 0.0
         } else if dia <= 6 {
-            multaTotal += multaPorDia * 0.25
+            porcentajeDia = 0.25
         } else if dia <= 10 {
-            multaTotal += multaPorDia * 0.50
+            porcentajeDia = 0.75 // 25% inicial + 50% incremento
         } else {
-            multaTotal += multaPorDia * 1.00
+            porcentajeDia = 1.00 // Llega al 100%
         }
+
+        multaTotal += multaPorDia * porcentajeDia
     }
 }
 
@@ -255,8 +259,8 @@ if diasAtraso > 0 {
             multaDia = multaPorDia * 0.25
             porcentaje = "25%"
         } else if dia <= 10 {
-            multaDia = multaPorDia * 0.50
-            porcentaje = "50%"
+            multaDia = multaPorDia * 0.75
+            porcentaje = "75% (+50%)"
         } else {
             multaDia = multaPorDia * 1.00
             porcentaje = "100%"
@@ -264,7 +268,7 @@ if diasAtraso > 0 {
 
         multaAcumulada += multaDia
 
-        print("\(fechaTexto)    \(String(format: "%2d", dia))           S/ \(String(format: "%.2f", multaDia))    S/ \(String(format: "%2f", multaAcumulada))")
+        print("\(fechaTexto)    \(String(format: "%2d", dia))           S/ \(String(format: "%.2f", multaDia))    S/ \(String(format: "%.2f", multaAcumulada))")
         print("             Multa aplicada: \(porcentaje)")
     }
 
