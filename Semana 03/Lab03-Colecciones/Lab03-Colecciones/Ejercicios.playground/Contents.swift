@@ -209,3 +209,58 @@ print(a.subtracting(b))       // PREDICT 7: [1, 2, 3]
 
 var repetidos: Set = ["A", "B", "A", "C", "B"]
 print(repetidos.count)         // PREDICT 8: 3
+
+// ==========================================
+// Ejercicio 4: Combinación de Colecciones
+// ==========================================
+
+// ==========================================
+// TODO 10: Inventario de productos
+// ==========================================
+print("\n--- TODO 10: Inventario de Productos ---")
+var preciosInventario: [String: Double] = [:]
+var stocksInventario: [String: Int] = [:]
+
+print("¿Cuántos productos?")
+let cantidadProd = Int(readLine() ?? "") ?? 0
+
+for i in 1...cantidadProd {
+    print("\nProducto \(i) Nombre:")
+    let nombre = readLine() ?? ""
+    print("Precio:")
+    let precio = Double(readLine() ?? "") ?? 0.0
+    print("Stock:")
+    let stock = Int(readLine() ?? "") ?? 0
+    
+    preciosInventario[nombre] = precio
+    stocksInventario[nombre] = stock
+}
+
+print("\n===== REPORTE DE INVENTARIO =====")
+var valorTotalInventario = 0.0
+
+for (nombre, precio) in preciosInventario {
+    if let stock = stocksInventario[nombre] {
+        let subtotalProducto = precio * Double(stock)
+        valorTotalInventario += subtotalProducto
+        print("\(nombre) -> Precio: S/. \(precio) | Stock: \(stock) | Subtotal: S/. \(subtotalProducto)")
+    }
+}
+
+print("\nValor total del inventario: S/. \(valorTotalInventario)")
+
+print("\n===== PRODUCTOS CON STOCK BAJO (< 5) =====")
+var hayStockBajo = false
+for (nombre, stock) in stocksInventario {
+    if stock < 5 {
+        if let precio = preciosInventario[nombre] {
+            print("Alerta: \(nombre) tiene un stock crítico de \(stock) unidades (S/. \(precio) c/u)")
+            hayStockBajo = true
+        }
+    }
+}
+
+if !hayStockBajo {
+    print("Todos los productos tienen stock suficiente (>= 5).")
+}
+
