@@ -73,3 +73,19 @@ class ClienteJuridico: Cliente {
     }
 }
 
+let clienteNatural = ClienteNatural(
+    nombreCompleto: "Juan Pérez", dni: "12345678", codigo: "C001",
+    direccion: "Av. Lima 123", fechaDeRegistro: "2025-04-03",
+    numeroCuenta: "001-2025-000123", montoMinimoApertura: 500)
+
+let clienteJuridico = ClienteJuridico(
+    razonSocial: "Soluciones SAC", ruc: "20123456789", representanteLegal: "María León",
+    codigo: "C002", direccion: "Jr. Empresas 456", fechaDeRegistro: "2025-04-01",
+    numeroCuenta: "001-2025-000456", montoMinimoApertura: 3000)
+
+// Swift elige el override según la instancia real, aunque el array sea [Cliente].
+let clientes: [Cliente] = [clienteNatural, clienteJuridico]
+for cliente in clientes {
+    cliente.mostrarDatos()
+    print("----------------------------------------")
+}

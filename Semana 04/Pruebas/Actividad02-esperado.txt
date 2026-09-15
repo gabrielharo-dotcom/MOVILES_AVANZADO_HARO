@@ -1,0 +1,19 @@
+👤 Cliente Natural:
+Nombre: Juan Pérez
+DNI: 12345678
+📄 Código: C001
+📍 Dirección: Av. Lima 123
+📅 Fecha de registro: 2025-04-03
+🏦 Nº Cuenta: 001-2025-000123
+💰 Monto mínimo de apertura: S/ 500.00
+----------------------------------------
+🏢 Cliente Jurídico:
+Razón Social: Soluciones SAC
+RUC: 20123456789
+Representante Legal: María León
+📄 Código: C002
+📍 Dirección: Jr. Empresas 456
+📅 Fecha de registro: 2025-04-01
+🏦 Nº Cuenta: 001-2025-000456
+💰 Monto mínimo de apertura: S/ 3000.00
+----------------------------------------
