@@ -1549,6 +1549,16 @@ func opcionServicio() {
         )
 
         return
+
+    case .personalizada:
+
+        frecuencia =
+            Int.random(in: 4...10)
+
+        espera =
+            Int.random(in: 1...frecuencia)
+
+        tipo = "tren"
     }
 
     print(
