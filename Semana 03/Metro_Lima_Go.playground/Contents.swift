@@ -5,6 +5,7 @@ enum Linea: String {
     case l2 = "Línea 2"
     case l4 = "Ramal Línea 4"
     case met = "Metropolitano"
+    case personalizada = "Linea Personalizada"
 }
 
 enum Estado: String {
@@ -33,6 +34,7 @@ struct Estacion {
     let ascensor: Bool?
     let accesible: Bool
     let anio: Int?
+    var lineaPersonalizada: String? = nil
     var conexiones: [Conexion] = []
     var nota: String = ""
 }
@@ -118,6 +120,30 @@ func siNo(_ b: Bool) -> String {
 
 func datoAscensor(_ b: Bool?) -> String {
     b.map { $0 ? "Sí" : "No" } ?? "No verificado"
+}
+
+func nombreLinea(
+    _ estacion: Estacion
+) -> String {
+
+    if estacion.linea ==
+        .personalizada {
+
+        return estacion
+            .lineaPersonalizada ??
+            estacion.linea.rawValue
+    }
+
+    return estacion.linea.rawValue
+}
+
+func mismaLinea(
+    _ primera: Estacion,
+    _ segunda: Estacion
+) -> Bool {
+
+    nombreLinea(primera) ==
+        nombreLinea(segunda)
 }
 
 let totalLineasMetro = 6
@@ -413,6 +439,28 @@ for (i, nombre) in nombresMet.enumerated() {
         )
     )
 }
+
+var ordenLineasAdmin:
+    [String: [String]] = [
+
+        Linea.l1.rawValue:
+            nombresL1,
+
+        Linea.l2.rawValue:
+            nombresL2.map {
+                l2($0)
+            },
+
+        Linea.l4.rawValue:
+            nombresL4.map {
+                l4($0)
+            },
+
+        Linea.met.rawValue:
+            nombresMet.map {
+                met($0)
+            }
+    ]
 
 conectar(
     l2("28 de Julio"),
@@ -1101,7 +1149,10 @@ func minutos(
         return 4
     }
 
-    if origen.linea != destino.linea {
+    if !mismaLinea(
+        origen,
+        destino
+    ) {
 
         if
             origen.linea == .l1 &&
@@ -1118,16 +1169,24 @@ func minutos(
     switch origen.linea {
 
     case .l1:
+
         return 3
 
     case .l2:
+
         return 2
 
     case .l4:
+
         return 3
 
     case .met:
+
         return 4
+
+    case .personalizada:
+
+        return 3
     }
 }
 
@@ -1507,28 +1566,42 @@ func tarifaSimulada(
 ) -> Double {
 
     guard
-        let estacionOrigen = estaciones[origen],
-        let estacionDestino = estaciones[destino]
+        let primera =
+            estaciones[origen],
+
+        let segunda =
+            estaciones[destino]
+
     else {
 
         return 1.50
     }
 
-    if estacionOrigen.linea ==
-        estacionDestino.linea {
+    if mismaLinea(
+        primera,
+        segunda
+    ) {
 
-        switch estacionOrigen.linea {
+        switch primera.linea {
 
         case .l1:
+
             return 1.50
 
         case .l2:
+
             return 1.40
 
         case .met:
+
             return 3.20
 
         case .l4:
+
+            return 1.50
+
+        case .personalizada:
+
             return 1.50
         }
     }
@@ -1729,19 +1802,573 @@ func menuTarjeta() {
     }
 }
 
+func claveNuevaEstacion(
+    nombre: String,
+    linea: String
+) -> String {
+
+    let base =
+        "\(nombre) (\(linea))"
+
+    if estaciones[base] == nil {
+
+        return base
+    }
+
+    var numero = 2
+
+    while estaciones[
+        "\(base) #\(numero)"
+    ] != nil {
+
+        numero += 1
+    }
+
+    return "\(base) #\(numero)"
+}
+
+func crearEstacionAdmin(
+    nombre: String,
+    lineaNombre: String,
+    tipoLinea: Linea,
+    codigo: String
+) -> (String, Estacion) {
+
+    let clave: String
+
+    if tipoLinea == .l1 {
+
+        clave = nombre
+
+    } else if tipoLinea == .l2 {
+
+        clave = l2(nombre)
+
+    } else if tipoLinea == .l4 {
+
+        clave = l4(nombre)
+
+    } else if tipoLinea == .met {
+
+        clave = met(nombre)
+
+    } else {
+
+        clave =
+            claveNuevaEstacion(
+                nombre: nombre,
+                linea: lineaNombre
+            )
+    }
+
+    let estacion =
+        Estacion(
+            codigo: codigo,
+            nombre: nombre,
+            linea: tipoLinea,
+            estado: .operativa,
+            ascensor: true,
+            accesible: true,
+            anio: nil,
+            lineaPersonalizada:
+                tipoLinea ==
+                .personalizada
+                ? lineaNombre
+                : nil,
+            nota:
+                "Estación agregada desde el modo administrador."
+        )
+
+    return (
+        clave,
+        estacion
+    )
+}
+
+func tipoLineaExistente(
+    _ nombre: String
+) -> Linea {
+
+    if nombre ==
+        Linea.l1.rawValue {
+
+        return .l1
+    }
+
+    if nombre ==
+        Linea.l2.rawValue {
+
+        return .l2
+    }
+
+    if nombre ==
+        Linea.l4.rawValue {
+
+        return .l4
+    }
+
+    if nombre ==
+        Linea.met.rawValue {
+
+        return .met
+    }
+
+    return .personalizada
+}
+
+func seleccionarLineaAdmin()
+    -> String? {
+
+    let nombres =
+        ordenLineasAdmin
+            .keys
+            .sorted()
+
+    print(
+        "\nSeleccione una línea:"
+    )
+
+    for (i, nombre)
+        in nombres.enumerated() {
+
+        print(
+            "\(i + 1). \(nombre)"
+        )
+    }
+
+    guard
+        let texto = readLine(),
+
+        let numero = Int(texto),
+
+        (1...nombres.count)
+            .contains(numero)
+
+    else {
+
+        return nil
+    }
+
+    return nombres[
+        numero - 1
+    ]
+}
+
+func agregarEstacionFinal() {
+
+    guard let lineaNombre =
+        seleccionarLineaAdmin()
+    else {
+
+        print("Línea inválida.")
+
+        return
+    }
+
+    print(
+        "Nombre de la nueva estación:"
+    )
+
+    guard
+        let nombre = readLine(),
+        !norm(nombre).isEmpty
+    else {
+
+        print("Nombre inválido.")
+
+        return
+    }
+
+    let tipo =
+        tipoLineaExistente(
+            lineaNombre
+        )
+
+    let codigo =
+        "ADM-\(Int.random(in: 1000...9999))"
+
+    let resultado =
+        crearEstacionAdmin(
+            nombre: nombre,
+            lineaNombre:
+                lineaNombre,
+            tipoLinea: tipo,
+            codigo: codigo
+        )
+
+    estaciones[
+        resultado.0
+    ] = resultado.1
+
+    ordenLineasAdmin[
+        lineaNombre,
+        default: []
+    ].append(
+        resultado.0
+    )
+
+    print(
+        "\(nombre) fue agregada al final de \(lineaNombre)."
+    )
+}
+
+func insertarEstacionEntreDos() {
+
+    guard
+        let lineaNombre =
+            seleccionarLineaAdmin(),
+
+        let orden =
+            ordenLineasAdmin[
+                lineaNombre
+            ],
+
+        orden.count >= 2
+
+    else {
+
+        print(
+            "La línea no tiene suficientes estaciones."
+        )
+
+        return
+    }
+
+    print(
+        "\nTramos disponibles:"
+    )
+
+    for i in
+        0..<(orden.count - 1) {
+
+        let primera =
+            estaciones[
+                orden[i]
+            ]?.nombre ??
+            orden[i]
+
+        let segunda =
+            estaciones[
+                orden[i + 1]
+            ]?.nombre ??
+            orden[i + 1]
+
+        print(
+            "\(i + 1). \(primera) <-> \(segunda)"
+        )
+    }
+
+    print(
+        "\nSeleccione el tramo:"
+    )
+
+    guard
+        let texto = readLine(),
+
+        let posicion =
+            Int(texto),
+
+        (1..<orden.count)
+            .contains(posicion)
+
+    else {
+
+        print(
+            "Tramo inválido."
+        )
+
+        return
+    }
+
+    print(
+        "Nombre de la nueva estación:"
+    )
+
+    guard
+        let nombre = readLine(),
+
+        !norm(nombre).isEmpty
+
+    else {
+
+        print(
+            "Nombre inválido."
+        )
+
+        return
+    }
+
+    let tipo =
+        tipoLineaExistente(
+            lineaNombre
+        )
+
+    let codigo =
+        "ADM-\(Int.random(in: 1000...9999))"
+
+    let resultado =
+        crearEstacionAdmin(
+            nombre: nombre,
+            lineaNombre:
+                lineaNombre,
+            tipoLinea: tipo,
+            codigo: codigo
+        )
+
+    estaciones[
+        resultado.0
+    ] = resultado.1
+
+    var nuevoOrden =
+        orden
+
+    nuevoOrden.insert(
+        resultado.0,
+        at: posicion
+    )
+
+    ordenLineasAdmin[
+        lineaNombre
+    ] = nuevoOrden
+
+    print(
+        "\(nombre) fue insertada correctamente."
+    )
+}
+
+func crearLineaCompleta() {
+
+    print(
+        "Nombre de la nueva línea:"
+    )
+
+    print(
+        "Ejemplo: Línea 7"
+    )
+
+    guard
+        let nombreLineaNueva =
+            readLine(),
+
+        !norm(
+            nombreLineaNueva
+        ).isEmpty
+
+    else {
+
+        print(
+            "Nombre inválido."
+        )
+
+        return
+    }
+
+    if ordenLineasAdmin[
+        nombreLineaNueva
+    ] != nil {
+
+        print(
+            "Esa línea ya existe."
+        )
+
+        return
+    }
+
+    print(
+        "Cantidad de estaciones:"
+    )
+
+    guard
+        let texto = readLine(),
+
+        let cantidad =
+            Int(texto),
+
+        cantidad >= 2
+
+    else {
+
+        print(
+            "La línea debe tener al menos dos estaciones."
+        )
+
+        return
+    }
+
+    var claves:
+        [String] = []
+
+    for numero in 1...cantidad {
+
+        print(
+            "Nombre de la estación \(numero):"
+        )
+
+        guard
+            let nombre = readLine(),
+
+            !norm(nombre).isEmpty
+
+        else {
+
+            print(
+                "Nombre inválido."
+            )
+
+            return
+        }
+
+        let codigo =
+            "NL-\(String(format: "%02d", numero))"
+
+        let resultado =
+            crearEstacionAdmin(
+                nombre: nombre,
+                lineaNombre:
+                    nombreLineaNueva,
+                tipoLinea:
+                    .personalizada,
+                codigo:
+                    codigo
+            )
+
+        estaciones[
+            resultado.0
+        ] = resultado.1
+
+        claves.append(
+            resultado.0
+        )
+    }
+
+    ordenLineasAdmin[
+        nombreLineaNueva
+    ] = claves
+
+    print(
+        "\nLínea \(nombreLineaNueva) creada correctamente."
+    )
+
+    print(
+        "Ya puede utilizarse para calcular rutas."
+    )
+}
+
+func verRedAdministrador() {
+
+    print(
+        "\n===== RED REGISTRADA ====="
+    )
+
+    let lineas =
+        ordenLineasAdmin
+            .keys
+            .sorted()
+
+    for linea in lineas {
+
+        print(
+            "\n\(linea)"
+        )
+
+        let orden =
+            ordenLineasAdmin[
+                linea,
+                default: []
+            ]
+
+        for clave in orden {
+
+            if let estacion =
+                estaciones[clave] {
+
+                print(
+                    "-> \(estacion.nombre)"
+                )
+            }
+        }
+    }
+}
+
+func menuAdministrador() {
+
+    print(
+        "Ingrese la clave de administrador:"
+    )
+
+    guard
+        readLine() == "admin123"
+    else {
+
+        print(
+            "Acceso denegado."
+        )
+
+        return
+    }
+
+    var salir = false
+
+    while !salir {
+
+        print("""
+        
+        ===== MODO ADMINISTRADOR =====
+
+        1. Agregar estación al final de una línea
+        2. Insertar estación entre dos existentes
+        3. Crear una línea completa nueva
+        4. Ver red registrada
+        0. Volver
+
+        Opción:
+        """)
+
+        switch readLine() {
+
+        case "1":
+
+            agregarEstacionFinal()
+
+        case "2":
+
+            insertarEstacionEntreDos()
+
+        case "3":
+
+            crearLineaCompleta()
+
+        case "4":
+
+            verRedAdministrador()
+
+        case "0":
+
+            salir = true
+
+        default:
+
+            print(
+                "Opción inválida."
+            )
+        }
+    }
+}
+
 func menu() {
 
     print("""
     
-    ============== METRO LIMA GO ==============
+    ================= METRO LIMA =================
 
     1. Buscar estación
     2. Ver estaciones por línea
     3. Ver cruces
     4. Consultar destino
-    5. Planificar viaje
+    5. Planificar viaje y calcular ruta
     6. Próximo servicio
     7. Gestionar tarjeta de transporte
+    8. Modo administrador
     0. Salir
 
     Opción:
@@ -1757,36 +2384,49 @@ while activo {
     switch readLine() {
 
     case "1":
+
         opcionBuscar()
 
     case "2":
+
         opcionLinea()
 
     case "3":
+
         cruces()
 
     case "4":
+
         opcionDestino()
 
     case "5":
+
         opcionRuta()
 
     case "6":
+
         opcionServicio()
 
     case "7":
+
         menuTarjeta()
+
+    case "8":
+
+        menuAdministrador()
 
     case "0":
 
         activo = false
 
         print(
-            "Programa finalizado.")
+            "Programa finalizado."
+        )
 
     default:
 
         print(
-            "Opción inválida.")
+            "Opción inválida."
+        )
     }
 }
