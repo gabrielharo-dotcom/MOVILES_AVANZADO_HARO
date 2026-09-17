@@ -43,6 +43,54 @@ struct Destino {
     let detalle: String
 }
 
+struct TarjetaTransporte {
+
+    let numero: String
+
+    var saldo: Double
+
+    var viajesRealizados: Int = 0
+
+    mutating func recargar(
+        _ monto: Double
+    ) -> Bool {
+
+        guard monto > 0 else {
+
+            return false
+        }
+
+        saldo += monto
+
+        return true
+    }
+
+    mutating func cobrar(
+        _ monto: Double
+    ) -> Bool {
+
+        guard
+            monto > 0,
+            saldo >= monto
+        else {
+
+            return false
+        }
+
+        saldo -= monto
+
+        viajesRealizados += 1
+
+        return true
+    }
+}
+
+var tarjetaUsuario =
+    TarjetaTransporte(
+        numero: "TIT-0001",
+        saldo: 10.00
+    )
+
 func norm(_ s: String) -> String {
     s.folding(
         options: [.diacriticInsensitive, .caseInsensitive],
@@ -1453,6 +1501,234 @@ func opcionServicio() {
     )
 }
 
+func tarifaSimulada(
+    origen: String,
+    destino: String
+) -> Double {
+
+    guard
+        let estacionOrigen = estaciones[origen],
+        let estacionDestino = estaciones[destino]
+    else {
+
+        return 1.50
+    }
+
+    if estacionOrigen.linea ==
+        estacionDestino.linea {
+
+        switch estacionOrigen.linea {
+
+        case .l1:
+            return 1.50
+
+        case .l2:
+            return 1.40
+
+        case .met:
+            return 3.20
+
+        case .l4:
+            return 1.50
+        }
+    }
+
+    return 4.00
+}
+
+func mostrarTarjeta() {
+
+    print(
+        "\n===== TARJETA DE TRANSPORTE ====="
+    )
+
+    print(
+        "Número: \(tarjetaUsuario.numero)"
+    )
+
+    print(
+        String(
+            format:
+                "Saldo actual: S/ %.2f",
+            tarjetaUsuario.saldo
+        )
+    )
+
+    print(
+        "Viajes realizados: \(tarjetaUsuario.viajesRealizados)"
+    )
+
+    print(
+        "Las tarifas son simuladas para demostrar el funcionamiento del programa."
+    )
+}
+
+func recargarTarjeta() {
+
+    mostrarTarjeta()
+
+    print(
+        "\nIngrese el monto de recarga:"
+    )
+
+    guard
+        let texto = readLine(),
+        let monto = Double(texto)
+    else {
+
+        print("Monto inválido.")
+
+        return
+    }
+
+    if tarjetaUsuario.recargar(monto) {
+
+        print(
+            String(
+                format:
+                    "Recarga realizada."
+            )
+        )
+
+        print(
+            String(
+                format:
+                    "Nuevo saldo: S/ %.2f",
+                tarjetaUsuario.saldo
+            )
+        )
+
+    } else {
+
+        print(
+            "El monto debe ser mayor que cero."
+        )
+    }
+}
+
+func simularCobro() {
+
+    print(
+        "Ingrese estación de origen:"
+    )
+
+    guard
+        let textoOrigen = readLine(),
+        let origen =
+            claveRuta(textoOrigen)
+    else {
+
+        print(
+            "Origen no identificado."
+        )
+
+        return
+    }
+
+    print(
+        "Ingrese estación o destino:"
+    )
+
+    guard
+        let textoDestino = readLine(),
+        let destino =
+            claveRuta(textoDestino)
+    else {
+
+        print(
+            "Destino no identificado."
+        )
+
+        return
+    }
+
+    let tarifa =
+        tarifaSimulada(
+            origen: origen,
+            destino: destino
+        )
+
+    print(
+        String(
+            format:
+                "Tarifa simulada: S/ %.2f",
+            tarifa
+        )
+    )
+
+    if tarjetaUsuario.cobrar(tarifa) {
+
+        print(
+            "Cobro realizado correctamente."
+        )
+
+        print(
+            String(
+                format:
+                    "Saldo restante: S/ %.2f",
+                tarjetaUsuario.saldo
+            )
+        )
+
+    } else {
+
+        print(
+            "Saldo insuficiente."
+        )
+
+        print(
+            String(
+                format:
+                    "Saldo disponible: S/ %.2f",
+                tarjetaUsuario.saldo
+            )
+        )
+    }
+}
+
+func menuTarjeta() {
+
+    var volver = false
+
+    while !volver {
+
+        print("""
+        
+        ===== GESTIÓN DE TARJETA =====
+
+        1. Ver saldo actual
+        2. Recargar tarjeta
+        3. Simular cobro de viaje
+        0. Volver
+
+        Opción:
+        """)
+
+        switch readLine() {
+
+        case "1":
+
+            mostrarTarjeta()
+
+        case "2":
+
+            recargarTarjeta()
+
+        case "3":
+
+            simularCobro()
+
+        case "0":
+
+            volver = true
+
+        default:
+
+            print("Opción inválida.")
+        }
+    }
+}
+
 func menu() {
 
     print("""
@@ -1465,6 +1741,7 @@ func menu() {
     4. Consultar destino
     5. Planificar viaje
     6. Próximo servicio
+    7. Gestionar tarjeta de transporte
     0. Salir
 
     Opción:
@@ -1497,14 +1774,19 @@ while activo {
     case "6":
         opcionServicio()
 
+    case "7":
+        menuTarjeta()
+
     case "0":
 
         activo = false
 
-        print("Programa finalizado.")
+        print(
+            "Programa finalizado.")
 
     default:
 
-        print("Opción inválida.")
+        print(
+            "Opción inválida.")
     }
 }
