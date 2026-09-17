@@ -983,41 +983,40 @@ func crearGrafo(futuro: Bool) -> Grafo {
 
     var grafo: Grafo = [:]
 
-    for i in 0..<(nombresL1.count - 1) {
+    for (_, orden) in ordenLineasAdmin {
 
-        unir(
-            nombresL1[i],
-            nombresL1[i + 1],
-            &grafo
-        )
-    }
+        if orden.count < 2 {
+            continue
+        }
 
-    for i in 0..<(nombresMet.count - 1) {
+        for i in 0..<(orden.count - 1) {
 
-        unir(
-            met(nombresMet[i]),
-            met(nombresMet[i + 1]),
-            &grafo
-        )
+            let a = orden[i]
+            let b = orden[i + 1]
+
+            guard
+                let estacionA = estaciones[a],
+                let estacionB = estaciones[b]
+            else {
+                continue
+            }
+
+            if futuro {
+
+                unir(a, b, &grafo)
+
+            } else if estacionA.estado == .operativa &&
+                      estacionB.estado == .operativa {
+
+                unir(a, b, &grafo)
+            }
+        }
     }
 
     for (a, b) in enlacesSuperficieL1Met {
 
-        unir(a, b, &grafo)
-    }
-
-    for i in 0..<(nombresL2.count - 1) {
-
-        let a = l2(nombresL2[i])
-        let b = l2(nombresL2[i + 1])
-
-        if futuro {
-
-            unir(a, b, &grafo)
-
-        } else if
-            estaciones[a]?.estado == .operativa &&
-            estaciones[b]?.estado == .operativa {
+        if estaciones[a] != nil &&
+           estaciones[b] != nil {
 
             unir(a, b, &grafo)
         }
@@ -1025,44 +1024,55 @@ func crearGrafo(futuro: Bool) -> Grafo {
 
     if futuro {
 
-        unir(
-            "Gamarra",
-            "28 de Julio (L1 futura)",
-            &grafo
-        )
-
-        unir(
-            "28 de Julio (L1 futura)",
-            "Grau",
-            &grafo
-        )
-
-        unir(
-            "28 de Julio (L1 futura)",
-            l2("28 de Julio"),
-            &grafo
-        )
-
-        unir(
-            l2("Estación Central"),
-            met("Central"),
-            &grafo
-        )
-
-        for i in 0..<(nombresL4.count - 1) {
+        if estaciones["Gamarra"] != nil &&
+           estaciones["28 de Julio (L1 futura)"] != nil {
 
             unir(
-                l4(nombresL4[i]),
-                l4(nombresL4[i + 1]),
+                "Gamarra",
+                "28 de Julio (L1 futura)",
                 &grafo
             )
         }
 
-        unir(
-            l2("Carmen de la Legua"),
-            l4("Carmen de la Legua"),
-            &grafo
-        )
+        if estaciones["28 de Julio (L1 futura)"] != nil &&
+           estaciones["Grau"] != nil {
+
+            unir(
+                "28 de Julio (L1 futura)",
+                "Grau",
+                &grafo
+            )
+        }
+
+        if estaciones["28 de Julio (L1 futura)"] != nil &&
+           estaciones[l2("28 de Julio")] != nil {
+
+            unir(
+                "28 de Julio (L1 futura)",
+                l2("28 de Julio"),
+                &grafo
+            )
+        }
+
+        if estaciones[l2("Estación Central")] != nil &&
+           estaciones[met("Central")] != nil {
+
+            unir(
+                l2("Estación Central"),
+                met("Central"),
+                &grafo
+            )
+        }
+
+        if estaciones[l2("Carmen de la Legua")] != nil &&
+           estaciones[l4("Carmen de la Legua")] != nil {
+
+            unir(
+                l2("Carmen de la Legua"),
+                l4("Carmen de la Legua"),
+                &grafo
+            )
+        }
     }
 
     return grafo
