@@ -1,3 +1,5 @@
-# Ejemplo: primera etiqueta en UIKit
+# Proyecto 1: introducción a UIKit
 
-Proyecto iOS con Storyboard y una etiqueta centrada mediante Auto Layout. Admite orientación vertical y horizontal. Abrir `apple_lab05_UIKit_intro.xcodeproj` en Xcode.
+Dos etiquetas creadas en `Main.storyboard`. El título y el nombre usan restricciones de Auto Layout para mantenerse centrados al rotar el iPhone.
+
+Abrir `apple_lab05_UIKit_intro.xcodeproj` en Xcode y ejecutar en un simulador de iPhone.

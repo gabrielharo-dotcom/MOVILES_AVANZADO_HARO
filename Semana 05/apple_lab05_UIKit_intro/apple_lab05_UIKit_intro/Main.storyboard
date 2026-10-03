@@ -29,6 +29,8 @@
                     <constraint firstItem="title-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="safe-area" secondAttribute="leading" constant="24" id="title-leading"/>
                     <constraint firstItem="name-label" firstAttribute="top" secondItem="title-label" secondAttribute="bottom" constant="64" id="vertical-spacing"/>
                     <constraint firstItem="name-label" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="name-center-x"/>
+                    <constraint firstItem="safe-area" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="name-label" secondAttribute="trailing" constant="16" id="name-trailing"/>
+                    <constraint firstItem="name-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="safe-area" secondAttribute="leading" constant="16" id="name-leading"/>
                 </constraints>
             </view>
         </viewController>
