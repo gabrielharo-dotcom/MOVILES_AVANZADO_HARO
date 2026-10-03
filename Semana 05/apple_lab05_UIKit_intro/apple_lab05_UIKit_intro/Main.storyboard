@@ -13,13 +13,21 @@
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <color key="textColor" systemColor="systemBlueColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gabriel Haro" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" translatesAutoresizingMaskIntoConstraints="NO" id="name-label">
+                        <rect key="frame" x="81" y="482" width="231" height="42"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" systemColor="labelColor"/>
+                        <constraints><constraint firstAttribute="width" constant="231" id="name-width"/></constraints>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
                     <constraint firstItem="title-label" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="title-center-x"/>
-                    <constraint firstItem="title-label" firstAttribute="centerY" secondItem="safe-area" secondAttribute="centerY" id="title-center-y"/>
+                    <constraint firstItem="title-label" firstAttribute="centerY" secondItem="safe-area" secondAttribute="centerY" constant="-60" id="title-center-y"/>
                     <constraint firstItem="safe-area" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="title-label" secondAttribute="trailing" constant="24" id="title-trailing"/>
                     <constraint firstItem="title-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="safe-area" secondAttribute="leading" constant="24" id="title-leading"/>
+                    <constraint firstItem="name-label" firstAttribute="top" secondItem="title-label" secondAttribute="bottom" constant="64" id="vertical-spacing"/>
+                    <constraint firstItem="name-label" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="name-center-x"/>
                 </constraints>
             </view>
         </viewController>
