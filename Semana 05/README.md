@@ -8,7 +8,8 @@ Cada carpeta contiene un proyecto `.xcodeproj` que se abre con Xcode. La activid
 ## Evidencias
 
 - [Proyecto 1 en iPhone 15](Evidencias/proyecto1-iphone15.png)
+- [Proyecto 1 en horizontal](Evidencias/proyecto1-horizontal-iphone15.png)
 - [Formulario de IMC](Evidencias/imc-inicial-iphone15.png)
 - [Resultado de IMC con 70 kg y 1,70 m](Evidencias/imc-resultado-iphone15.png)
 
-Ambos proyectos compilaron y se ejecutaron con Xcode 15.4 en el simulador iPhone 15 (iOS 17.5). La prueba de interfaz `IMC_UIKitUITests.testCalculoIMC` confirmó el resultado `IMC: 24.22 - Peso normal`.
+Ambos proyectos compilaron y se ejecutaron con Xcode 15.4 en el simulador iPhone 15 (iOS 17.5). La prueba de interfaz `apple_lab05_UIKit_introUITests.testEtiquetasEnHorizontal` confirmó que ambas etiquetas permanecen visibles al girar el dispositivo. La prueba `IMC_UIKitUITests.testCalculoIMC` confirmó el resultado `IMC: 24.22 - Peso normal`.
