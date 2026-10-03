@@ -9,6 +9,7 @@
         59FBDE0E630E40AAF14D2E21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C240E2E7CBE6EAB9591EC165 /* AppDelegate.swift */; };
         9EA14DB2BCC70FA43A2B3DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4259805576B5F692EB00A3 /* SceneDelegate.swift */; };
         5F664BCE47A4C56516CCA6E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B31556A3333E636D3B514 /* ViewController.swift */; };
+        A850D107D4AE49B8A3C13701 /* LoanCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B850D107D4AE49B8A3C13701 /* LoanCalculator.swift */; };
         76B3A0EFE4AC9C583C6A6B4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E74DFC167C84E32B9634909A /* Main.storyboard */; };
         284EB75E022598C9C0589091 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B49551372FA36542953C9A20 /* LaunchScreen.storyboard */; };
         22423BE5E14A94847417E3C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F382D7A837CBE97FA346D55B /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
         C240E2E7CBE6EAB9591EC165 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
         BD4259805576B5F692EB00A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
         099B31556A3333E636D3B514 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+        B850D107D4AE49B8A3C13701 /* LoanCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanCalculator.swift; sourceTree = "<group>"; };
         B0B6AB40E095224E01FE09A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
         E74DFC167C84E32B9634909A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
         B49551372FA36542953C9A20 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
             C240E2E7CBE6EAB9591EC165 /* AppDelegate.swift */,
             BD4259805576B5F692EB00A3 /* SceneDelegate.swift */,
             099B31556A3333E636D3B514 /* ViewController.swift */,
+            B850D107D4AE49B8A3C13701 /* LoanCalculator.swift */,
             B0B6AB40E095224E01FE09A9 /* Info.plist */,
             E74DFC167C84E32B9634909A /* Main.storyboard */,
             B49551372FA36542953C9A20 /* LaunchScreen.storyboard */,
@@ -79,6 +82,7 @@
             59FBDE0E630E40AAF14D2E21 /* AppDelegate.swift in Sources */,
             9EA14DB2BCC70FA43A2B3DED /* SceneDelegate.swift in Sources */,
             5F664BCE47A4C56516CCA6E0 /* ViewController.swift in Sources */,
+            A850D107D4AE49B8A3C13701 /* LoanCalculator.swift in Sources */,
         ); runOnlyForDeploymentPostprocessing = 0; };
         A253365AFA98DCA528D904F8 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (77D1478730BAB1ECBC3B9A7A /* Prestamos_UIKitUITests.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
