@@ -118,7 +118,7 @@
             PRODUCT_BUNDLE_IDENTIFIER = com.empresa.navegacionuikit;
             PRODUCT_NAME = "$(TARGET_NAME)";
             SWIFT_VERSION = 5.0;
-            TARGETED_DEVICE_FAMILY = 1;
+            TARGETED_DEVICE_FAMILY = "1,2";
         }; name = Debug; };
         E4BE01885EF55B74A6A9FEE7 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {
             ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -129,7 +129,7 @@
             PRODUCT_BUNDLE_IDENTIFIER = com.empresa.navegacionuikit;
             PRODUCT_NAME = "$(TARGET_NAME)";
             SWIFT_VERSION = 5.0;
-            TARGETED_DEVICE_FAMILY = 1;
+            TARGETED_DEVICE_FAMILY = "1,2";
         }; name = Release; };
         D439062E97E2FF7D9FD00C6C /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.empresa.navegacionuikitUITests; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; TEST_TARGET_NAME = Navegacion_UIKit; }; name = Debug; };
         12EEEAD1377A61065DD5BD0B /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = com.empresa.navegacionuikitUITests; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; TEST_TARGET_NAME = Navegacion_UIKit; }; name = Release; };
