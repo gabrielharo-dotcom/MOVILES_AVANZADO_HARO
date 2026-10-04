@@ -8,14 +8,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                 <viewLayoutGuide key="safeArea" id="client-safe"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="DATOS DEL CLIENTE" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="client-title"><fontDescription key="fontDescription" type="system" pointSize="24"/><color key="textColor" systemColor="systemBlueColor"/></label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="fill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="client-stack">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="DATOS DEL CLIENTE" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="client-title"><fontDescription key="fontDescription" type="system" pointSize="25"/><color key="textColor" systemColor="systemBlueColor"/></label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Por favor ingresa los siguientes datos:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="client-instruction"><fontDescription key="fontDescription" type="system" pointSize="17"/></label>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="apellido-row">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Apellidos:" translatesAutoresizingMaskIntoConstraints="NO" id="apellido-label"><fontDescription key="fontDescription" type="system" pointSize="17"/><constraints><constraint firstAttribute="width" constant="95" id="apellido-width"/></constraints></label>
+                                    <textField opaque="NO" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="Apellidos" translatesAutoresizingMaskIntoConstraints="NO" id="apellido-field"><constraints><constraint firstAttribute="height" constant="44" id="apellido-height"/></constraints><textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/></textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="nombre-row">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Nombres:" translatesAutoresizingMaskIntoConstraints="NO" id="nombre-label"><fontDescription key="fontDescription" type="system" pointSize="17"/><constraints><constraint firstAttribute="width" constant="95" id="nombre-width"/></constraints></label>
+                                    <textField opaque="NO" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="Nombres" translatesAutoresizingMaskIntoConstraints="NO" id="nombre-field"><constraints><constraint firstAttribute="height" constant="44" id="nombre-height"/></constraints><textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/></textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="dni-row">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="DNI:" translatesAutoresizingMaskIntoConstraints="NO" id="dni-label"><fontDescription key="fontDescription" type="system" pointSize="17"/><constraints><constraint firstAttribute="width" constant="95" id="dni-width"/></constraints></label>
+                                    <textField opaque="NO" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="8 dígitos" translatesAutoresizingMaskIntoConstraints="NO" id="dni-field"><constraints><constraint firstAttribute="height" constant="44" id="dni-height"/></constraints><textInputTraits key="textInputTraits" keyboardType="numberPad"/></textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="continue-button"><constraints><constraint firstAttribute="height" constant="50" id="continue-height"/></constraints><buttonConfiguration key="configuration" style="filled" title="Continuar"/><connections><action selector="btnContinuar:" destination="client-controller" eventType="touchUpInside" id="continue-action"/></connections></button>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="client-title" firstAttribute="top" secondItem="client-safe" secondAttribute="top" constant="48" id="title-top"/>
-                    <constraint firstItem="client-title" firstAttribute="centerX" secondItem="client-safe" secondAttribute="centerX" id="title-center"/>
+                    <constraint firstItem="client-stack" firstAttribute="top" secondItem="client-safe" secondAttribute="top" constant="72" id="stack-top"/>
+                    <constraint firstItem="client-stack" firstAttribute="leading" secondItem="client-safe" secondAttribute="leading" constant="24" id="stack-leading"/>
+                    <constraint firstItem="client-safe" firstAttribute="trailing" secondItem="client-stack" secondAttribute="trailing" constant="24" id="stack-trailing"/>
+                    <constraint firstItem="client-safe" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="client-stack" secondAttribute="bottom" constant="16" id="stack-bottom"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="apellidoTextField" destination="apellido-field" id="apellido-outlet"/>
+                <outlet property="nombreTextField" destination="nombre-field" id="nombre-outlet"/>
+                <outlet property="dniTextField" destination="dni-field" id="dni-outlet"/>
+            </connections>
         </viewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="client-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
     </objects></scene></scenes>
