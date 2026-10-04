@@ -11,6 +11,7 @@ La calculadora de venta a plazos y su `PROMPTS.md` se desarrollan en la rama `ai
 
 - [Navegación: pantalla 1](Evidencias/navegacion-pantalla1-iphone15.png)
 - [Navegación: pantalla 2](Evidencias/navegacion-pantalla2-iphone15.png)
+- [Icono Tecsup en el inicio del iPhone](Evidencias/navegacion-icono-iphone15.jpg)
 - [Datos del cliente: formulario](Evidencias/cliente-formulario-iphone15.png)
 - [Datos del cliente: confirmación modal](Evidencias/cliente-confirmacion-iphone15.png)
 

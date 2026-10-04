@@ -1,6 +1,26 @@
 import XCTest
 
 final class Navegacion_UIKitUITests: XCTestCase {
+    func testIconoEnInicio() {
+        let app = XCUIApplication()
+        app.launch()
+        XCUIDevice.shared.press(.home)
+
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let icon = springboard.icons.matching(
+            NSPredicate(format: "label BEGINSWITH %@", "Navegacion")
+        ).firstMatch
+        for _ in 0..<5 where !icon.exists {
+            springboard.swipeLeft()
+        }
+        XCTAssertTrue(icon.waitForExistence(timeout: 5))
+
+        let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        screenshot.name = "Icono Tecsup en inicio"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+    }
+
     func testNavegacionDeIdaYVuelta() {
         let app = XCUIApplication()
         app.launch()
