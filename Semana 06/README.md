@@ -5,7 +5,7 @@ En `main`:
 - [Navegacion_UIKit](Navegacion_UIKit): `UINavigationController` y segue `Show` entre dos pantallas.
 - [Semana06_02](Semana06_02): captura de datos de un cliente y presentación modal de la confirmación.
 
-La calculadora de venta a plazos y su `PROMPTS.md` se desarrollan en la rama `ai-assisted`.
+En `ai-assisted`, esta rama integra `main` y agrega [VentaPlazos_UIKit](VentaPlazos_UIKit), la calculadora de venta a plazos, y [PROMPTS.md](PROMPTS.md).
 
 ## Evidencias
 
@@ -14,6 +14,9 @@ La calculadora de venta a plazos y su `PROMPTS.md` se desarrollan en la rama `ai
 - [Icono Tecsup en el inicio del iPhone](Evidencias/navegacion-icono-iphone15.jpg)
 - [Datos del cliente: formulario](Evidencias/cliente-formulario-iphone15.png)
 - [Datos del cliente: confirmación modal](Evidencias/cliente-confirmacion-iphone15.png)
+
+- [Venta a plazos: formulario](Evidencias/venta-formulario-iphone15.jpg) (`ai-assisted`)
+- [Venta a plazos: resultado](Evidencias/venta-resultado-iphone15.jpg) (`ai-assisted`)
 
 ## Preguntas de navegación
 
