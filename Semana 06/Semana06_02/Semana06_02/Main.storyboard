@@ -49,6 +49,54 @@
             </connections>
         </viewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="client-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+    </objects></scene>
+    <scene sceneID="confirmation-scene"><objects>
+        <viewController storyboardIdentifier="ViewControllerConfirmacion" id="confirmation-controller" customClass="ViewControllerConfirmacion" customModule="Semana06_02" customModuleProvider="target" sceneMemberID="viewController">
+            <view key="view" contentMode="scaleToFill" id="confirmation-view">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                <viewLayoutGuide key="safeArea" id="confirmation-safe"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="fill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-stack">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="DATOS INGRESADOS" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-title"><fontDescription key="fontDescription" type="system" pointSize="25"/></label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Datos del cliente que fueron ingresados" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-subtitle"><fontDescription key="fontDescription" type="system" pointSize="16"/></label>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-apellido-row">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Apellidos:" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-apellido-caption"><fontDescription key="fontDescription" type="system" pointSize="17"/><constraints><constraint firstAttribute="width" constant="100" id="confirmation-apellido-width"/></constraints></label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="—" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-apellido-value"><fontDescription key="fontDescription" type="system" pointSize="17"/></label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-nombre-row">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Nombres:" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-nombre-caption"><fontDescription key="fontDescription" type="system" pointSize="17"/><constraints><constraint firstAttribute="width" constant="100" id="confirmation-nombre-width"/></constraints></label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="—" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-nombre-value"><fontDescription key="fontDescription" type="system" pointSize="17"/></label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-dni-row">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="DNI:" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-dni-caption"><fontDescription key="fontDescription" type="system" pointSize="17"/><constraints><constraint firstAttribute="width" constant="100" id="confirmation-dni-width"/></constraints></label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="—" translatesAutoresizingMaskIntoConstraints="NO" id="confirmation-dni-value"><fontDescription key="fontDescription" type="system" pointSize="17"/></label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" translatesAutoresizingMaskIntoConstraints="NO" id="back-button"><constraints><constraint firstAttribute="height" constant="50" id="back-height"/></constraints><buttonConfiguration key="configuration" style="plain" title="Volver"/><connections><action selector="volver:" destination="confirmation-controller" eventType="touchUpInside" id="back-action"/></connections></button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="confirmation-stack" firstAttribute="top" secondItem="confirmation-safe" secondAttribute="top" constant="80" id="confirmation-top"/>
+                    <constraint firstItem="confirmation-stack" firstAttribute="leading" secondItem="confirmation-safe" secondAttribute="leading" constant="24" id="confirmation-leading"/>
+                    <constraint firstItem="confirmation-safe" firstAttribute="trailing" secondItem="confirmation-stack" secondAttribute="trailing" constant="24" id="confirmation-trailing"/>
+                    <constraint firstItem="confirmation-safe" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="confirmation-stack" secondAttribute="bottom" constant="16" id="confirmation-bottom"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="apellidoLabel" destination="confirmation-apellido-value" id="confirmation-apellido-outlet"/>
+                <outlet property="nombreLabel" destination="confirmation-nombre-value" id="confirmation-nombre-outlet"/>
+                <outlet property="dniLabel" destination="confirmation-dni-value" id="confirmation-dni-outlet"/>
+            </connections>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="confirmation-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
     </objects></scene></scenes>
     <resources>
         <systemColor name="systemBackgroundColor"><color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></systemColor>
