@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23501" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="navigation-controller">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies><plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23504"/><capability name="Safe area layout guides" minToolsVersion="9.0"/><capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/></dependencies>
+    <scenes>
+        <scene sceneID="navigation-scene"><objects>
+            <navigationController id="navigation-controller" sceneMemberID="viewController">
+                <navigationBar key="navigationBar" contentMode="scaleToFill" id="navigation-bar"/>
+                <connections><segue destination="screen-one" kind="relationship" relationship="rootViewController" id="root-segue"/></connections>
+            </navigationController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="navigation-responder" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects></scene>
+        <scene sceneID="scene-one"><objects>
+            <viewController id="screen-one" customClass="ViewController" customModule="Navegacion_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <view key="view" contentMode="scaleToFill" id="view-one">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <viewLayoutGuide key="safeArea" id="safe-one"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="PANTALLA 01" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="label-one"><fontDescription key="fontDescription" type="system" pointSize="25"/></label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Desarrollado por: Gabriel Haro" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="author-label"><fontDescription key="fontDescription" type="system" pointSize="14"/></label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="label-one" firstAttribute="centerX" secondItem="safe-one" secondAttribute="centerX" id="one-center-x"/>
+                        <constraint firstItem="label-one" firstAttribute="centerY" secondItem="safe-one" secondAttribute="centerY" id="one-center-y"/>
+                        <constraint firstItem="author-label" firstAttribute="centerX" secondItem="safe-one" secondAttribute="centerX" id="author-center-x"/>
+                        <constraint firstItem="safe-one" firstAttribute="bottom" secondItem="author-label" secondAttribute="bottom" constant="16" id="author-bottom"/>
+                    </constraints>
+                </view>
+                <navigationItem key="navigationItem" title="Pantalla 1" id="item-one">
+                    <barButtonItem key="rightBarButtonItem" title="A Pantalla 2" id="to-two">
+                        <connections><segue destination="screen-two" kind="show" id="show-two"/></connections>
+                    </barButtonItem>
+                </navigationItem>
+            </viewController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="responder-one" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects></scene>
+        <scene sceneID="scene-two"><objects>
+            <viewController id="screen-two" customClass="ViewController2" customModule="Navegacion_UIKit" customModuleProvider="target" sceneMemberID="viewController">
+                <view key="view" contentMode="scaleToFill" id="view-two">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <viewLayoutGuide key="safeArea" id="safe-two"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="PANTALLA 02" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="label-two"><fontDescription key="fontDescription" type="system" pointSize="25"/></label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="label-two" firstAttribute="centerX" secondItem="safe-two" secondAttribute="centerX" id="two-center-x"/>
+                        <constraint firstItem="label-two" firstAttribute="centerY" secondItem="safe-two" secondAttribute="centerY" id="two-center-y"/>
+                    </constraints>
+                </view>
+                <navigationItem key="navigationItem" title="Pantalla 2" id="item-two"/>
+            </viewController>
+            <placeholder placeholderIdentifier="IBFirstResponder" id="responder-two" userLabel="First Responder" sceneMemberID="firstResponder"/>
+        </objects></scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor"><color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></systemColor>
+    </resources>
+</document>
