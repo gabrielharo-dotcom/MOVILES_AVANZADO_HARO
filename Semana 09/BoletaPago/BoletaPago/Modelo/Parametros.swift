@@ -19,15 +19,24 @@ enum Parametros {
     static let recargoHorasExtras35 = Decimal(string: "1.35")!
 
     // Diccionario: nombre de la AFP -> sus tasas.
-    // "AFP Ejemplo" es solo para los casos de prueba; para datos reales
-    // agregar las AFP con los valores publicados por la SBS.
+    // "AFP Ejemplo" es solo para los casos de prueba de la guía.
+    // Las AFP reales: aporte obligatorio 10%, prima de seguro 1.37% y comisión
+    // sobre flujo de cada AFP (SBS, devengue octubre 2026; ver tabla de fuentes).
     static let tasasAFP: [String: TasasAFP] = [
-        "AFP Ejemplo": TasasAFP(
-            fondo: Decimal(string: "0.10")!,
-            comision: Decimal(string: "0.016")!,
-            seguro: Decimal(string: "0.0135")!
-        )
+        "AFP Ejemplo": tasas(fondo: "0.10", comision: "0.016", seguro: "0.0135"),
+        "Habitat": tasas(fondo: "0.10", comision: "0.0147", seguro: "0.0137"),
+        "Integra": tasas(fondo: "0.10", comision: "0.0155", seguro: "0.0137"),
+        "Prima": tasas(fondo: "0.10", comision: "0.0160", seguro: "0.0137"),
+        "Profuturo": tasas(fondo: "0.10", comision: "0.0169", seguro: "0.0137")
     ]
+
+    private static func tasas(fondo: String, comision: String, seguro: String) -> TasasAFP {
+        TasasAFP(
+            fondo: Decimal(string: fondo)!,
+            comision: Decimal(string: comision)!,
+            seguro: Decimal(string: seguro)!
+        )
+    }
 
     static var nombresAFP: [String] {
         tasasAFP.keys.sorted()
