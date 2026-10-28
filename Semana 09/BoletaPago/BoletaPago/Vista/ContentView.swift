@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 // Una pantalla y los controles de la guía. El cálculo vive en el modelo.
 struct ContentView: View {
@@ -56,7 +57,9 @@ struct ContentView: View {
                     BoletaView(boleta: boleta)
                 }
             }.padding(20)
-        }.scrollDismissesKeyboard(.interactively)
+        }
+        .scrollDismissesKeyboard(.interactively)
+        .clipped()
     }
 
     private func campo(_ nombre: String, texto: Binding<String>, entero: Bool = false) -> some View {
@@ -72,6 +75,8 @@ struct ContentView: View {
     }
 
     private func calcular() {
+        // El teclado decimal no tiene Return: se cierra al calcular para leer la boleta.
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         let formulario = FormularioBoleta(
             sueldo: sueldo, dias: dias, tieneHijos: tieneHijos,
             sistema: sistema, afp: afp, horasExtras25: horasExtras25,
