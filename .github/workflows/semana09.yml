@@ -20,7 +20,7 @@ jobs:
         run: |
           set -o pipefail
           mkdir -p evidencias
-          swift test --package-path 'Semana 09' 2>&1 | tee evidencias/modelo.log
+          BOLETA_RESULTADOS="$PWD/evidencias/casos-swift.json" swift test --package-path 'Semana 09' 2>&1 | tee evidencias/modelo.log
       - name: Compilar y probar la app en iPhone
         run: |
           set -o pipefail

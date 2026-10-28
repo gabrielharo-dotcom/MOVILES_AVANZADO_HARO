@@ -58,6 +58,29 @@ final class BoletaModeloTests: XCTestCase {
         XCTAssertEqual(mesCompleto.netoAPagar, decimal("1673.01"))
     }
 
+    func testExportarResultadosParaControlCruzado() throws {
+        guard let ruta = ProcessInfo.processInfo.environment["BOLETA_RESULTADOS"] else { return }
+        let casos = [
+            calcular(sueldo: 2500, dias: 30, hijos: false, sistema: .onp),
+            calcular(sueldo: 1800, dias: 27, hijos: true, sistema: .onp),
+            calcular(sueldo: 3000, dias: 30, hijos: true, sistema: .afp, h25: 4, h35: 4, adelantos: 200),
+            calcular(sueldo: 4200, dias: 24, hijos: true, sistema: .afp, h25: 2, h35: 2, adelantos: 100)
+        ]
+        let resultados = casos.enumerated().map { indice, boleta -> [String: String] in
+            var fila = ["caso": String(indice + 1)]
+            for concepto in boleta.remuneraciones + boleta.descuentos + boleta.aportaciones {
+                fila[concepto.nombre] = NSDecimalNumber(decimal: concepto.monto).stringValue
+            }
+            fila["Total remuneraciones"] = NSDecimalNumber(decimal: boleta.totalRemuneraciones).stringValue
+            fila["Total descuentos"] = NSDecimalNumber(decimal: boleta.totalDescuentos).stringValue
+            fila["Neto a pagar"] = NSDecimalNumber(decimal: boleta.netoAPagar).stringValue
+            return fila
+        }
+        let json = try JSONSerialization.data(withJSONObject: resultados, options: [.prettyPrinted, .sortedKeys])
+        try json.write(to: URL(fileURLWithPath: ruta))
+        XCTAssertEqual(resultados.count, 4)
+    }
+
     func testTasasRealesYCalculoRepetido() {
         let b = calcular(sueldo: 3000, dias: 30, hijos: true, sistema: .afp, h25: 4, h35: 4, adelantos: 200, afp: "Habitat")
         XCTAssertEqual(b.descuentos[2].monto, decimal("47.82"))
