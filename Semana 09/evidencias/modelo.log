@@ -1,0 +1,46 @@
+Building for debugging...
+[0/7] /Users/runner/work/MOVILES_AVANZADO_HARO/MOVILES_AVANZADO_HARO/Semana runner.swift
+[0/7] Write sources
+[4/7] Write swift-version--79AA4F9932D1E87A.txt
+[6/12] Compiling BoletaModelo Boleta+Descuentos.swift
+[7/12] Compiling BoletaModelo Boleta.swift
+[8/12] Emitting module BoletaModelo
+[9/12] Compiling BoletaModelo DatosBoleta.swift
+[10/12] Compiling BoletaModelo Parametros.swift
+[11/13] Compiling BoletaModelo Validacion.swift
+[12/15] Emitting module BoletaModeloTests
+[13/15] Compiling BoletaModeloTests BoletaModeloTests.swift
+[14/17] Compiling BoletaModeloPackageTests runner.swift
+[15/17] Emitting module BoletaModeloPackageTests
+[15/17] Write Objects.LinkFileList
+[16/17] Linking BoletaModeloPackageTests
+Build complete! (19.93s)
+Test Suite 'All tests' started at 2026-10-28 17:14:10.234.
+Test Suite 'BoletaModeloPackageTests.xctest' started at 2026-10-28 17:14:10.236.
+Test Suite 'BoletaModeloTests' started at 2026-10-28 17:14:10.236.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testAnalisisGrupal]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testAnalisisGrupal]' passed (0.003 seconds).
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso1]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso1]' passed (0.000 seconds).
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso2]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso2]' passed (0.000 seconds).
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso3]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso3]' passed (0.000 seconds).
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso4]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testCaso4]' passed (0.000 seconds).
+Test Case '-[BoletaModeloTests.BoletaModeloTests testExportarResultadosParaControlCruzado]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testExportarResultadosParaControlCruzado]' passed (0.002 seconds).
+Test Case '-[BoletaModeloTests.BoletaModeloTests testTasasRealesYCalculoRepetido]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testTasasRealesYCalculoRepetido]' passed (0.000 seconds).
+Test Case '-[BoletaModeloTests.BoletaModeloTests testValidacionesYComaDecimal]' started.
+Test Case '-[BoletaModeloTests.BoletaModeloTests testValidacionesYComaDecimal]' passed (0.000 seconds).
+Test Suite 'BoletaModeloTests' passed at 2026-10-28 17:14:10.242.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'BoletaModeloPackageTests.xctest' passed at 2026-10-28 17:14:10.242.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.006 (0.007) seconds
+Test Suite 'All tests' passed at 2026-10-28 17:14:10.242.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.006 (0.008) seconds
+◇ Test run started.
+↳ Testing Library Version: 124.4
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests passed after 0.001 seconds.
