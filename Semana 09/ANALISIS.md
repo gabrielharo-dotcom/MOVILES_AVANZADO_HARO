@@ -52,13 +52,8 @@ Horas extras = 62.50 + 67.50 = 130.00. Sobre el total de remuneraciones: 130.00 
 
 ## Tabla de fuentes
 
-| Dato | Valor | Fuente | Fecha de consulta |
-|---|---|---|---|
-| RMV | S/ 1,230.00 | D.S. 015-2026-TR, publicado en El Peruano el 28/09/2026, vigente desde el 01/10/2026 ([nota de El Peruano](https://elperuano.pe/noticia/305879-desde-hoy-rige-la-nueva-rmv-sueldo-minimo-sube-a-s-1230-y-cambia-otros-conceptos-laborales)) | 25/10/2026 |
-| Asignación familiar | 10% de la RMV = S/ 123.00 | Ley 25129 (y misma nota de El Peruano) | 25/10/2026 |
-| ONP | 13% | D.L. 19990 (valor tomado de la guía del curso) | 25/10/2026 |
-| EsSalud | 9% | Ley 26790 (valor tomado de la guía del curso) | 25/10/2026 |
-| Recargo de horas extras | 25% y 35% | Normas de jornada y sobretiempo (valor tomado de la guía del curso) | 25/10/2026 |
-| Formato de la boleta | 3 bloques + neto | Art. 19 del D.S. 001-98-TR (según la guía del curso) | 25/10/2026 |
-| AFP Ejemplo | Fondo 10.00%, comisión 1.60%, seguro 1.35% | Valores de prueba de la guía; no son de una AFP real | 25/10/2026 |
-| AFP reales | _por completar_ | Tasas publicadas por la SBS | _por completar_ |
+La tabla completa, con enlaces oficiales, valores y fecha de consulta del 28/10/2026, está en [FUENTES.md](FUENTES.md). Las tasas reales de las cuatro AFP se verificaron en la SBS para el devengue 2026-10 y coinciden con el diccionario Swift y la hoja Parámetros.
+
+## Alcance de las respuestas
+
+Las respuestas 1–4 usan los casos académicos y las convenciones simplificadas de la actividad. La respuesta 5 depende de los casos propios por integrante y permanece pendiente.
