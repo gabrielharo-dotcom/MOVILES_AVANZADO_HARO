@@ -18,7 +18,10 @@ final class BoletaPagoUITests: XCTestCase {
     }
 
     private func mostrar(_ elemento: XCUIElement) {
-        for _ in 0..<6 {
+        if elemento.isHittable { return }
+        // Un control anterior puede haber quedado arriba al cerrar el teclado.
+        for _ in 0..<4 { app.swipeDown() }
+        for _ in 0..<8 {
             if elemento.isHittable { return }
             app.swipeUp()
         }
