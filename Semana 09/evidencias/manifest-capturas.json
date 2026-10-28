@@ -1,0 +1,86 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+        "deviceName" : "iPhone 16 Pro",
+        "exportedFileName" : "11124A9F-C8C3-467A-BA49-B14B8BCAFA10.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "caso-1-resultado_0_15FCCE78-F75B-4B8F-A6D7-E2B53B98D4AC.png",
+        "timestamp" : 1793208056.821
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+        "deviceName" : "iPhone 16 Pro",
+        "exportedFileName" : "C365F8FE-0138-4AC7-85AA-69F84C5FDD88.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "formulario_0_C4D398A8-815A-45A9-AE78-E6B96AC2F70D.png",
+        "timestamp" : 1793208030.445
+      }
+    ],
+    "testIdentifier" : "BoletaPagoUITests/testCaso1()",
+    "testIdentifierURL" : "test://com.apple.xcode/BoletaPago/BoletaPagoUITests/BoletaPagoUITests/testCaso1"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+        "deviceName" : "iPhone 16 Pro",
+        "exportedFileName" : "3CCEFAA3-D5AA-47FC-87FF-3CB4BE0FE6A0.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "caso-2-resultado_0_F4E217CC-6904-4513-9DDD-2F9C074A6697.png",
+        "timestamp" : 1793208075.344
+      }
+    ],
+    "testIdentifier" : "BoletaPagoUITests/testCaso2()",
+    "testIdentifierURL" : "test://com.apple.xcode/BoletaPago/BoletaPagoUITests/BoletaPagoUITests/testCaso2"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+        "deviceName" : "iPhone 16 Pro",
+        "exportedFileName" : "806E86D7-45A0-4F98-A49D-537F13A9CCA2.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "caso-3-resultado_0_F3F9A22F-3613-4458-AC70-EE5A4F7EFBA0.png",
+        "timestamp" : 1793208095.719
+      }
+    ],
+    "testIdentifier" : "BoletaPagoUITests/testCaso3()",
+    "testIdentifierURL" : "test://com.apple.xcode/BoletaPago/BoletaPagoUITests/BoletaPagoUITests/testCaso3"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+        "deviceName" : "iPhone 16 Pro",
+        "exportedFileName" : "15C5167C-BF1C-40E5-B5AB-E6402B0E8EE4.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "caso-4-resultado_0_F21A6B91-2FC8-45C2-A56A-9EAC6145D211.png",
+        "timestamp" : 1793208116.929
+      }
+    ],
+    "testIdentifier" : "BoletaPagoUITests/testCaso4()",
+    "testIdentifierURL" : "test://com.apple.xcode/BoletaPago/BoletaPagoUITests/BoletaPagoUITests/testCaso4"
+  },
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "DC4CD8B3-4457-4153-9087-A0D7A2F9BFD9",
+        "deviceName" : "iPhone 16 Pro",
+        "exportedFileName" : "C34B86DF-0B0B-4074-9FF7-9BF5F2A0B5FF.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "validacion_0_9E0F369D-1450-408F-B2AD-7EDF27A9B375.png",
+        "timestamp" : 1793208122.432
+      }
+    ],
+    "testIdentifier" : "BoletaPagoUITests/testValidacion()",
+    "testIdentifierURL" : "test://com.apple.xcode/BoletaPago/BoletaPagoUITests/BoletaPagoUITests/testValidacion"
+  }
+]

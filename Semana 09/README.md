@@ -72,8 +72,24 @@ swift test --package-path 'Semana 09'
 
 Pruebas de interfaz: abrir el proyecto en Xcode, elegir el esquema BoletaPago y pulsar **Product > Test**. Se ingresan los cuatro casos en la pantalla real y se verifica el neto mostrado. También se comprueba el error de sueldo vacío. Las capturas se adjuntan al informe XCTest.
 
-El flujo [Semana 09 - SwiftUI y evidencias](../../.github/workflows/semana09.yml) reproduce estas pruebas en un Mac de GitHub Actions. Los registros, el JSON calculado por Swift, las capturas originales y el resultado de Xcode quedan en el artefacto `semana09-evidencias` de cada ejecución.
+El flujo [Semana 09 - SwiftUI y evidencias](../.github/workflows/semana09.yml) reproduce estas pruebas en un Mac de GitHub Actions. Los registros, el JSON calculado por Swift, las capturas originales y el resultado de Xcode quedan en el artefacto `semana09-evidencias` de cada ejecución.
 
 ## Alcance de esta entrega
 
 Se desarrollan los niveles 1 y 2. El nivel 3 del documento es un reto opcional y no forma parte de esta versión. Los casos propios por integrante y la pregunta 5 permanecen pendientes de sus datos reales, por acuerdo del equipo. La validación del docente y la exposición presencial se realizan fuera del repositorio.
+
+## Capturas de la app ejecutada
+
+Capturas originales del simulador iPhone 16 Pro, iOS 18.5. La aplicación fue compilada con Xcode 16.4. El detalle de la ejecución y del control cruzado está en [PRUEBAS.md](PRUEBAS.md).
+
+| Formulario | Mensaje de validación |
+|---|---|
+| <img src="evidencias/formulario.png" width="300" alt="Formulario SwiftUI de una pantalla"> | <img src="evidencias/validacion.png" width="300" alt="Error de sueldo vacío sin boleta calculada"> |
+
+| Caso 1, ONP | Caso 2, hijos y 27 días |
+|---|---|
+| <img src="evidencias/caso-1-resultado.png" width="300" alt="Caso 1: neto 2175.00"> | <img src="evidencias/caso-2-resultado.png" width="300" alt="Caso 2: neto 1516.41"> |
+
+| Caso 3, AFP y horas extras | Caso 4, evaluación |
+|---|---|
+| <img src="evidencias/caso-3-resultado.png" width="300" alt="Caso 3: neto 2631.73"> | <img src="evidencias/caso-4-resultado.png" width="300" alt="Caso 4: neto 3011.17"> |
