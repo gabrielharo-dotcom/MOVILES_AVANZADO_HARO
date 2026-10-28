@@ -5,6 +5,28 @@
 	};
 	objectVersion = 77;
 	objects = {
+		B10000000000000000000001 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = BoletaPagoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10000000000000000000002 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PruebasUI/BoletaPagoUITests.swift; sourceTree = "<group>"; };
+		B10000000000000000000003 = {isa = PBXBuildFile; fileRef = B10000000000000000000002; };
+		B10000000000000000000004 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000003,); runOnlyForDeploymentPostprocessing = 0; };
+		B10000000000000000000005 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		B10000000000000000000006 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		B10000000000000000000007 = {isa = PBXContainerItemProxy; containerPortal = A1000000000000000000000A; proxyType = 1; remoteGlobalIDString = A10000000000000000000006; remoteInfo = BoletaPago; };
+		B10000000000000000000008 = {isa = PBXTargetDependency; target = A10000000000000000000006; targetProxy = B10000000000000000000007; };
+		B10000000000000000000009 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1000000000000000000000A;
+			buildPhases = (B10000000000000000000004, B10000000000000000000005, B10000000000000000000006,);
+			buildRules = ();
+			dependencies = (B10000000000000000000008,);
+			name = BoletaPagoUITests;
+			productName = BoletaPagoUITests;
+			productReference = B10000000000000000000001;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B1000000000000000000000A = {isa = XCConfigurationList; buildConfigurations = (B1000000000000000000000B, B1000000000000000000000C,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		B1000000000000000000000B = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.tecsup.BoletaPagoUITests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; TEST_TARGET_NAME = BoletaPago; }; name = Debug; };
+		B1000000000000000000000C = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 17.0; PRODUCT_BUNDLE_IDENTIFIER = com.tecsup.BoletaPagoUITests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = 1; TEST_TARGET_NAME = BoletaPago; }; name = Release; };
 
 /* Begin PBXFileReference section */
 		A10000000000000000000001 /* BoletaPago.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoletaPago.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				A10000000000000000000002 /* BoletaPago */,
+				B10000000000000000000002 /* Pruebas UI */,
 				A10000000000000000000005 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				A10000000000000000000001 /* BoletaPago.app */,
+				B10000000000000000000001 /* BoletaPagoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +124,7 @@
 			projectRoot = "";
 			targets = (
 				A10000000000000000000006 /* BoletaPago */,
+				B10000000000000000000009 /* BoletaPagoUITests */,
 			);
 		};
 /* End PBXProject section */

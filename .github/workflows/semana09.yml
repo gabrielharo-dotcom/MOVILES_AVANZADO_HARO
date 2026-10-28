@@ -1,0 +1,43 @@
+name: Semana 09 - SwiftUI y evidencias
+on:
+  workflow_dispatch:
+  push:
+    branches: [manual]
+    paths:
+      - 'Semana 09/BoletaPago/**'
+      - 'Semana 09/Pruebas/**'
+      - 'Semana 09/Package.swift'
+      - '.github/workflows/semana09.yml'
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pruebas del modelo Swift
+        run: |
+          set -o pipefail
+          mkdir -p evidencias
+          swift test --package-path 'Semana 09' 2>&1 | tee evidencias/modelo.log
+      - name: Compilar y probar la app en iPhone
+        run: |
+          set -o pipefail
+          DEVICE=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for devices in d["devices"].values() for x in devices if "iPhone" in x["name"]))')
+          xcrun simctl boot "$DEVICE" || true
+          xcrun simctl bootstatus "$DEVICE" -b
+          xcrun simctl status_bar "$DEVICE" override --time '9:41' --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
+          xcodebuild test -project 'Semana 09/BoletaPago/BoletaPago.xcodeproj' -scheme BoletaPago -destination "platform=iOS Simulator,id=$DEVICE" -resultBundlePath evidencias/BoletaPago.xcresult CODE_SIGNING_ALLOWED=NO 2>&1 | tee evidencias/simulador.log
+      - name: Exportar capturas originales del simulador
+        if: always()
+        run: |
+          if [ -d evidencias/BoletaPago.xcresult ]; then
+            xcrun xcresulttool export attachments --path evidencias/BoletaPago.xcresult --output-path evidencias/capturas
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semana09-evidencias
+          path: evidencias/
+          retention-days: 14
