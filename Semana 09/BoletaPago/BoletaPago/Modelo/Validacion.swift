@@ -37,6 +37,9 @@ struct FormularioBoleta {
             return .failure(ErrorValidacion(mensaje: "Elige una AFP de la lista."))
         }
 
+        guard adelantosMonto == adelantosMonto.redondeado() else {
+            return .failure(ErrorValidacion(mensaje: "Los adelantos admiten como máximo dos decimales."))
+        }
         return .success(DatosBoleta(
             sueldoBasico: sueldoBasico,
             diasLaborados: diasLaborados,

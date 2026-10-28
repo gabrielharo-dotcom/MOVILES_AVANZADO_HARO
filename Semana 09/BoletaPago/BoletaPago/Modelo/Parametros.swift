@@ -8,10 +8,12 @@ struct TasasAFP {
 }
 
 // Parámetros en un solo lugar (no se escriben dentro de las fórmulas).
-// Fuentes y fecha de consulta: ver la tabla de fuentes en el README y en el Excel.
+// Fuentes oficiales consultadas el 28/10/2026: FUENTES.md y hoja Parámetros.
 enum Parametros {
     // Se crean desde texto para que 0.13 sea exacto (un literal Double no lo es).
-    static let rmv = Decimal(string: "1230")!                       // RMV vigente desde 01/10/2026 (por verificar)
+    static let rmv = Decimal(string: "1230")! // D.S. 015-2026-TR, art. 1.2; vigente 01/10/2026
+    static let diasMes = Decimal(30)
+    static let horasDia = Decimal(8)
     static let porcentajeAsignacionFamiliar = Decimal(string: "0.10")!  // Ley 25129
     static let tasaONP = Decimal(string: "0.13")!                   // D.L. 19990
     static let tasaEsSalud = Decimal(string: "0.09")!               // Ley 26790
@@ -21,7 +23,8 @@ enum Parametros {
     // Diccionario: nombre de la AFP -> sus tasas.
     // "AFP Ejemplo" es solo para los casos de prueba de la guía.
     // Las AFP reales: aporte obligatorio 10%, prima de seguro 1.37% y comisión
-    // sobre flujo de cada AFP (SBS, devengue octubre 2026; ver tabla de fuentes).
+    // sobre flujo de cada AFP (SBS, devengue 2026-10; consulta 28/10/2026).
+    // Alcance simplificado de la guía: sin comisión sobre saldo, topes ni quinta categoría.
     static let tasasAFP: [String: TasasAFP] = [
         "AFP Ejemplo": tasas(fondo: "0.10", comision: "0.016", seguro: "0.0135"),
         "Habitat": tasas(fondo: "0.10", comision: "0.0147", seguro: "0.0137"),

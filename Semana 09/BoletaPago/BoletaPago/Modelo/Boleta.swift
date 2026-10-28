@@ -25,7 +25,7 @@ final class Boleta {
         let sueldo = datos.sueldoBasico
 
         // Sueldo básico ÷ 30 × días laborados
-        let sueldoComputable = (sueldo * Decimal(datos.diasLaborados) / 30).redondeado()
+        let sueldoComputable = (sueldo * Decimal(datos.diasLaborados) / Parametros.diasMes).redondeado()
 
         // 10% de la RMV si tiene hijos; no se prorratea por días
         let asignacionFamiliar = datos.tieneHijos
@@ -33,8 +33,9 @@ final class Boleta {
             : 0
 
         // Valor hora × recargo × horas  =  sueldo ÷ 240 × recargo × horas
-        let horasExtras25 = (sueldo * Parametros.recargoHorasExtras25 * datos.horasExtras25 / 240).redondeado()
-        let horasExtras35 = (sueldo * Parametros.recargoHorasExtras35 * datos.horasExtras35 / 240).redondeado()
+        let horasMes = Parametros.diasMes * Parametros.horasDia
+        let horasExtras25 = (sueldo * Parametros.recargoHorasExtras25 * datos.horasExtras25 / horasMes).redondeado()
+        let horasExtras35 = (sueldo * Parametros.recargoHorasExtras35 * datos.horasExtras35 / horasMes).redondeado()
 
         remuneraciones = [
             Concepto(nombre: "Sueldo computable", monto: sueldoComputable),
