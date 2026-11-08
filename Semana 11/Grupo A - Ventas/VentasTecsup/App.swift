@@ -54,7 +54,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             pestana(productos, "Productos", "shippingbox"),
             pestana(clientes, "Clientes", "person.2"),
         ]
-        if !cuenta.esSupervisor {
+        if cuenta.esSupervisor {
+            pantallas.insert(pestana(HistorialViewController(almacen: almacen, supervisor: true), "Ventas", "list.bullet.rectangle"), at: 0)
+        } else {
             pantallas.append(pestana(NuevaVentaViewController(almacen: almacen, vendedor: cuenta), "Venta", "cart.badge.plus"))
             pantallas.append(pestana(HistorialViewController(almacen: almacen), "Mis ventas", "list.bullet.rectangle"))
         }
