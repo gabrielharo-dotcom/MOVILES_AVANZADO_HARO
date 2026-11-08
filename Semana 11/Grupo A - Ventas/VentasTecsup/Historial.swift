@@ -16,6 +16,13 @@ enum Periodo: String, CaseIterable {
 }
 
 extension Almacen {
+    func vendedores() throws -> [Usuario] {
+        let filtro = NSPredicate(format: "rol == %@", Rol.vendedor.rawValue)
+        return try buscar(Usuario.self, donde: filtro,
+                          orden: [NSSortDescriptor(key: "nombre", ascending: true),
+                                  NSSortDescriptor(key: "usuario", ascending: true)])
+    }
+
     func ventas(intervalo: DateInterval? = nil, vendedor: Usuario? = nil,
                 cliente: String = "", soloActivas: Bool = false) throws -> [Venta] {
         guard let cuenta = usuarioActual else { throw ErrorVentas("Inicia sesión para consultar ventas.") }
@@ -35,13 +42,18 @@ extension Almacen {
 
 final class HistorialViewController: Listado {
     private let almacen: Almacen
+    private let supervisor: Bool
     private let periodos = UISegmentedControl(items: Periodo.allCases.map(\.rawValue))
+    private let filtrosVendedor = Filtros()
+    private var vendedores: [Usuario] = []
+    private var vendedor: Usuario?
     private let hoy = etiqueta("", estilo: .subheadline)
     private let mes = etiqueta("", estilo: .subheadline)
     private var filas: [Venta] = []
 
-    init(almacen: Almacen) {
+    init(almacen: Almacen, supervisor: Bool = false) {
         self.almacen = almacen
+        self.supervisor = supervisor
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -49,26 +61,57 @@ final class HistorialViewController: Listado {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Mis ventas"
-        let indicadores = UIStackView(arrangedSubviews: [hoy, mes])
-        indicadores.distribution = .fillEqually
-        indicadores.spacing = 8
-        controles.addArrangedSubview(indicadores)
+        title = supervisor ? "Ventas del equipo" : "Mis ventas"
+        if !supervisor {
+            let indicadores = UIStackView(arrangedSubviews: [hoy, mes])
+            indicadores.distribution = .fillEqually
+            indicadores.spacing = 8
+            controles.addArrangedSubview(indicadores)
+        }
         periodos.selectedSegmentIndex = 0
         periodos.addAction(UIAction { [weak self] _ in self?.actualizar() }, for: .valueChanged)
         buscador.placeholder = "Buscar por cliente"
         controles.addArrangedSubview(periodos)
+        if supervisor { controles.addArrangedSubview(filtrosVendedor) }
         controles.addArrangedSubview(buscador)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        if supervisor {
+            do {
+                vendedores = try almacen.vendedores()
+                if let vendedor, !vendedores.contains(vendedor) { self.vendedor = nil }
+                mostrarVendedores()
+            } catch { avisar("Ventas del equipo", error.localizedDescription) }
+        }
+        super.viewWillAppear(animated)
+    }
+
+    private func mostrarVendedores() {
+        let seleccion = vendedor.flatMap { vendedores.firstIndex(of: $0) }.map { $0 + 1 } ?? 0
+        let repeticiones = Dictionary(grouping: vendedores, by: \.nombre)
+        let nombres = vendedores.map { vendedor in
+            (repeticiones[vendedor.nombre]?.count ?? 0) > 1
+                ? "\(vendedor.nombre) (@\(vendedor.usuario))" : vendedor.nombre
+        }
+        filtrosVendedor.mostrar(["Todos"] + nombres, seleccion: seleccion) { [weak self] indice in
+            guard let self else { return }
+            vendedor = indice == 0 ? nil : vendedores[indice - 1]
+            mostrarVendedores()
+            actualizar()
+        }
     }
 
     override func actualizar() {
         do {
             let periodo = Periodo.allCases[periodos.selectedSegmentIndex]
-            filas = try almacen.ventas(intervalo: periodo.intervalo(), cliente: buscador.text ?? "")
-            let ventasHoy = try almacen.ventas(intervalo: Periodo.hoy.intervalo(), soloActivas: true)
-            let ventasMes = try almacen.ventas(intervalo: Periodo.mes.intervalo(), soloActivas: true)
-            hoy.text = resumen("Hoy", ventasHoy)
-            mes.text = resumen("Mes", ventasMes)
+            filas = try almacen.ventas(intervalo: periodo.intervalo(), vendedor: vendedor, cliente: buscador.text ?? "")
+            if !supervisor {
+                let ventasHoy = try almacen.ventas(intervalo: Periodo.hoy.intervalo(), soloActivas: true)
+                let ventasMes = try almacen.ventas(intervalo: Periodo.mes.intervalo(), soloActivas: true)
+                hoy.text = resumen("Hoy", ventasHoy)
+                mes.text = resumen("Mes", ventasMes)
+            }
             mostrarFilas(filas.count, vacio: "No hay ventas para estos filtros.")
         } catch { avisar("Ventas", error.localizedDescription) }
     }
@@ -83,6 +126,7 @@ final class HistorialViewController: Listado {
         let venta = filas[indexPath.row]
         let fecha = venta.fecha.formatted(.dateTime.day().month(.twoDigits).locale(Locale(identifier: "es_PE")))
         var detalle = "\(fecha) · \(venta.producto.nombre) × \(venta.cantidad)"
+        if supervisor { detalle = "\(venta.vendedor.nombre) · " + detalle }
         if venta.anulada { detalle += "\nAnulada" }
         return filaDetalle(venta.cliente.nombre, detalle, valor: soles(venta.total),
                            color: venta.anulada ? .systemRed : .systemGreen,
