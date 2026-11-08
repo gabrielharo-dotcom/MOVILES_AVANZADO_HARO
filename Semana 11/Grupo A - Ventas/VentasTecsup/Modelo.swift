@@ -11,7 +11,7 @@ final class Usuario: NSManagedObject {
     @NSManaged var usuario: String
     @NSManaged var clave: String
     @NSManaged var rol: String
-    @NSManaged var ventas: Set<Venta>
+    @NSManaged var ventas: NSSet?
 
     var esSupervisor: Bool { rol == Rol.supervisor.rawValue }
 }
@@ -22,14 +22,14 @@ final class Producto: NSManagedObject {
     @NSManaged var categoria: String
     @NSManaged var precio: Double
     @NSManaged var stock: Int64
-    @NSManaged var ventas: Set<Venta>
+    @NSManaged var ventas: NSSet?
 }
 
 @objc(Cliente)
 final class Cliente: NSManagedObject {
     @NSManaged var nombre: String
     @NSManaged var documento: String
-    @NSManaged var ventas: Set<Venta>
+    @NSManaged var ventas: NSSet?
 }
 
 @objc(Venta)
