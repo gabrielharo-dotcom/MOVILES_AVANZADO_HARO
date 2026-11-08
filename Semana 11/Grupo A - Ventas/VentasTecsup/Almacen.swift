@@ -56,4 +56,20 @@ final class Almacen {
     func cerrarSesion() {
         usuarioActual = nil
     }
+
+    func registrar(nombre: String, usuario: String, clave: String, confirmacion: String, rol: Rol) throws {
+        guard !nombre.isEmpty, !Self.normalizarUsuario(usuario).isEmpty else {
+            throw ErrorVentas("Completa el nombre y el usuario.")
+        }
+        guard clave.count >= 6 else { throw ErrorVentas("La clave debe tener al menos 6 caracteres.") }
+        guard clave == confirmacion else { throw ErrorVentas("Las claves deben coincidir.") }
+        guard try buscarUsuario(usuario) == nil else { throw ErrorVentas("El usuario ya existe.") }
+        let cuenta = Usuario(context: contexto)
+        cuenta.nombre = nombre
+        cuenta.usuario = Self.normalizarUsuario(usuario)
+        cuenta.clave = clave
+        cuenta.rol = rol.rawValue
+        try guardar()
+        usuarioActual = cuenta
+    }
 }

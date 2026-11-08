@@ -36,6 +36,12 @@ final class IngresoViewController: Formulario {
         }
         contenido.setCustomSpacing(26, after: indicacion)
         contenido.addArrangedSubview(boton("Ingresar") { [weak self] in self?.ingresar() })
+        contenido.addArrangedSubview(boton("Crear cuenta", principal: false) { [weak self] in
+            guard let self else { return }
+            navigationController?.pushViewController(
+                RegistroViewController(almacen: almacen, alRegistrar: alIngresar), animated: true
+            )
+        })
     }
 
     private func ingresar() {
