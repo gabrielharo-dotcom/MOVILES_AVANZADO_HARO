@@ -109,6 +109,9 @@ func filaDetalle(_ titulo: String, _ detalle: String, valor: String? = nil,
     if let valor {
         let texto = etiqueta(valor, estilo: .subheadline, color: color)
         texto.textAlignment = .right
+        if tachada {
+            texto.attributedText = NSAttributedString(string: valor, attributes: [.strikethroughStyle: 1])
+        }
         texto.sizeToFit()
         celda.accessoryView = texto
         celda.accessibilityLabel = [titulo, detalle, valor].joined(separator: ", ")
