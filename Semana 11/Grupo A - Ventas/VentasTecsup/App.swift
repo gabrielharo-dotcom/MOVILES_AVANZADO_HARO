@@ -56,6 +56,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         ]
         if cuenta.esSupervisor {
             pantallas.insert(pestana(HistorialViewController(almacen: almacen, supervisor: true), "Ventas", "list.bullet.rectangle"), at: 0)
+            pantallas.insert(pestana(ResumenViewController(almacen: almacen, cuenta: cuenta), "Resumen", "chart.bar"), at: 0)
         } else {
             pantallas.append(pestana(NuevaVentaViewController(almacen: almacen, vendedor: cuenta), "Venta", "cart.badge.plus"))
             pantallas.append(pestana(HistorialViewController(almacen: almacen), "Mis ventas", "list.bullet.rectangle"))
