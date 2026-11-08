@@ -1,0 +1,38 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		000000000000000000000001 = { isa = PBXProject; attributes = { LastUpgradeCheck = 1600; }; buildConfigurationList = 00000000000000000000000A; compatibilityVersion = "Xcode 14.0"; developmentRegion = es; hasScannedForEncodings = 0; knownRegions = (es, Base, ); mainGroup = 000000000000000000000002; productRefGroup = 000000000000000000000004; projectDirPath = ""; projectRoot = ""; targets = (000000000000000000000005, ); };
+		000000000000000000000002 = { isa = PBXGroup; sourceTree = "<group>"; children = (000000000000000000000003, 000000000000000000000004, ); };
+		000000000000000000000003 = { isa = PBXGroup; path = VentasTecsup; sourceTree = "<group>"; children = (000000000000000000000064, 000000000000000000000065, 000000000000000000000066, 000000000000000000000067, 000000000000000000000068, 000000000000000000000014, 000000000000000000000016, ); };
+		000000000000000000000004 = { isa = PBXGroup; name = Products; sourceTree = "<group>"; children = (000000000000000000000017, ); };
+		000000000000000000000005 = { isa = PBXNativeTarget; buildConfigurationList = 00000000000000000000000E; buildPhases = (000000000000000000000006, 000000000000000000000007, 000000000000000000000008, ); buildRules = (); dependencies = (); name = VentasTecsup; productName = VentasTecsup; productReference = 000000000000000000000017; productType = "com.apple.product-type.application"; };
+		000000000000000000000006 = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (0000000000000000000000C8, 0000000000000000000000C9, 0000000000000000000000CA, 0000000000000000000000CB, 0000000000000000000000CC, 000000000000000000000018, ); runOnlyForDeploymentPostprocessing = 0; };
+		000000000000000000000007 = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		000000000000000000000008 = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		00000000000000000000000A = { isa = XCConfigurationList; buildConfigurations = (00000000000000000000000B, 00000000000000000000000C, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		00000000000000000000000B = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; ENABLE_TESTABILITY = YES; }; name = Debug; };
+		00000000000000000000000C = { isa = XCBuildConfiguration; buildSettings = { CLANG_ENABLE_MODULES = YES; IPHONEOS_DEPLOYMENT_TARGET = 16.0; SDKROOT = iphoneos; SWIFT_VERSION = 5.0; }; name = Release; };
+		00000000000000000000000E = { isa = XCConfigurationList; buildConfigurations = (00000000000000000000000F, 000000000000000000000010, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		00000000000000000000000F = { isa = XCBuildConfiguration; buildSettings = { CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = VentasTecsup/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = pe.edu.tecsup.haro.ventas; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = 1; }; name = Debug; };
+		000000000000000000000010 = { isa = XCBuildConfiguration; buildSettings = { CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = VentasTecsup/Info.plist; PRODUCT_BUNDLE_IDENTIFIER = pe.edu.tecsup.haro.ventas; PRODUCT_NAME = "$(TARGET_NAME)"; TARGETED_DEVICE_FAMILY = 1; }; name = Release; };
+		000000000000000000000014 = { isa = XCVersionGroup; children = (000000000000000000000015, ); currentVersion = 000000000000000000000015; path = Ventas.xcdatamodeld; sourceTree = "<group>"; versionGroupType = wrapper.xcdatamodel; };
+		000000000000000000000015 = { isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ventas.xcdatamodel; sourceTree = "<group>"; };
+		000000000000000000000016 = { isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		000000000000000000000017 = { isa = PBXFileReference; explicitFileType = wrapper.application; path = VentasTecsup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000018 = { isa = PBXBuildFile; fileRef = 000000000000000000000014; };
+		000000000000000000000064 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Almacen.swift; sourceTree = "<group>"; };
+		000000000000000000000065 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		000000000000000000000066 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingreso.swift; sourceTree = "<group>"; };
+		000000000000000000000067 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interfaz.swift; sourceTree = "<group>"; };
+		000000000000000000000068 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modelo.swift; sourceTree = "<group>"; };
+		0000000000000000000000C8 = { isa = PBXBuildFile; fileRef = 000000000000000000000064; };
+		0000000000000000000000C9 = { isa = PBXBuildFile; fileRef = 000000000000000000000065; };
+		0000000000000000000000CA = { isa = PBXBuildFile; fileRef = 000000000000000000000066; };
+		0000000000000000000000CB = { isa = PBXBuildFile; fileRef = 000000000000000000000067; };
+		0000000000000000000000CC = { isa = PBXBuildFile; fileRef = 000000000000000000000068; };
+	};
+	rootObject = 000000000000000000000001;
+}
