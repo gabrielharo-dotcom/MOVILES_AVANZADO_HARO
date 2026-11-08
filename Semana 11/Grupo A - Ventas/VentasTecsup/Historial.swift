@@ -16,6 +16,19 @@ enum Periodo: String, CaseIterable {
 }
 
 extension Almacen {
+    func anular(_ venta: Venta, motivo: String) throws {
+        guard usuarioActual?.esSupervisor == true else { throw ErrorVentas("Solo el supervisor puede anular ventas.") }
+        let motivo = motivo.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !motivo.isEmpty else { throw ErrorVentas("Escribe el motivo de anulación.") }
+        guard !venta.anulada else { throw ErrorVentas("Esta venta ya fue anulada.") }
+        let (nuevoStock, desborda) = venta.producto.stock.addingReportingOverflow(venta.cantidad)
+        guard !desborda else { throw ErrorVentas("No se pudo devolver la cantidad al stock.") }
+        venta.producto.stock = nuevoStock
+        venta.anulada = true
+        venta.motivoAnulacion = motivo
+        try guardar()
+    }
+
     func vendedores() throws -> [Usuario] {
         let filtro = NSPredicate(format: "rol == %@", Rol.vendedor.rawValue)
         return try buscar(Usuario.self, donde: filtro,
@@ -132,5 +145,37 @@ final class HistorialViewController: Listado {
                            color: venta.anulada ? .systemRed : .systemGreen,
                            icono: venta.anulada ? "xmark.circle.fill" : "checkmark.circle.fill",
                            tachada: venta.anulada)
+    }
+
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let venta = filas[indexPath.row]
+        guard supervisor, !venta.anulada else { return nil }
+        return accionDeslizante("Anular") { [weak self] in
+            self?.confirmarAnulacion(venta)
+            return false
+        }
+    }
+
+    private func confirmarAnulacion(_ venta: Venta) {
+        let detalle = "\(venta.cliente.nombre) · \(venta.producto.nombre) × \(venta.cantidad)\n\(soles(venta.total))\nSe devolverán \(venta.cantidad) unidades al stock."
+        let alerta = UIAlertController(title: "Anular venta", message: detalle, preferredStyle: .alert)
+        alerta.addTextField { campo in
+            campo.placeholder = "Motivo obligatorio"
+            campo.accessibilityLabel = "Motivo de anulación"
+        }
+        alerta.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        let anular = UIAlertAction(title: "Anular", style: .destructive) { [weak self, weak alerta] _ in
+            guard let self, let motivo = alerta?.textFields?.first?.textoLimpio else { return }
+            do {
+                try almacen.anular(venta, motivo: motivo)
+                actualizar()
+            } catch { avisar("No se pudo anular", error.localizedDescription) }
+        }
+        anular.isEnabled = false
+        alerta.addAction(anular)
+        alerta.textFields?.first?.addAction(UIAction { [weak alerta, weak anular] _ in
+            anular?.isEnabled = alerta?.textFields?.first?.textoLimpio.isEmpty == false
+        }, for: .editingChanged)
+        present(alerta, animated: true)
     }
 }
