@@ -76,8 +76,10 @@ final class ClientesViewController: Listado {
         let cliente = filas[indexPath.row]
         let total = cliente.totalComprado
         let categoria = CategoriaCliente(total: total)
+        let iniciales = cliente.nombre.split(whereSeparator: { $0.isWhitespace }).prefix(2)
+            .map { String($0.prefix(1)) }.joined().uppercased()
         let color: UIColor = categoria == .vip ? .systemPurple : categoria == .frecuente ? .systemBlue : .secondaryLabel
-        return filaDetalle(cliente.nombre, "\(cliente.documento) · \(categoria.rawValue)",
+        return filaDetalle("\(iniciales) · \(cliente.nombre)", "\(cliente.documento) · \(categoria.rawValue)",
                            valor: soles(NSDecimalNumber(decimal: total).doubleValue), color: color,
                            icono: "person.crop.circle.fill", editable: true)
     }
