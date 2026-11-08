@@ -50,11 +50,15 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let pestanas = UITabBarController()
         let productos = ProductosViewController(almacen: almacen, supervisor: cuenta.esSupervisor)
         let clientes = ClientesViewController(almacen: almacen, supervisor: cuenta.esSupervisor)
-        pestanas.viewControllers = [
+        var pantallas = [
             pestana(productos, "Productos", "shippingbox"),
             pestana(clientes, "Clientes", "person.2"),
-            pestana(pantalla, "Cuenta", "person.crop.circle"),
         ]
+        if !cuenta.esSupervisor {
+            pantallas.append(pestana(NuevaVentaViewController(almacen: almacen, vendedor: cuenta), "Venta", "cart.badge.plus"))
+        }
+        pantallas.append(pestana(pantalla, "Cuenta", "person.crop.circle"))
+        pestanas.viewControllers = pantallas
         window?.rootViewController = pestanas
     }
 
