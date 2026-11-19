@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Usuario" representedClassName="Usuario" syncable="YES" codeGenerationType="manual/none">
+    <entity name="Usuario" representedClassName="Usuario" syncable="YES">
         <attribute name="nombre" attributeType="String" optional="NO" />
         <attribute name="usuario" attributeType="String" optional="NO" />
         <attribute name="clave" attributeType="String" optional="NO" />
@@ -12,19 +12,19 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Producto" representedClassName="Producto" syncable="YES" codeGenerationType="manual/none">
+    <entity name="Producto" representedClassName="Producto" syncable="YES">
         <attribute name="nombre" attributeType="String" optional="NO" />
         <attribute name="categoria" attributeType="String" optional="NO" />
         <attribute name="precio" attributeType="Double" optional="NO" usesScalarValueType="YES" defaultValueString="0" />
         <attribute name="stock" attributeType="Integer 64" optional="NO" usesScalarValueType="YES" defaultValueString="0" />
         <relationship name="ventas" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Venta" inverseName="producto" inverseEntity="Venta" />
     </entity>
-    <entity name="Cliente" representedClassName="Cliente" syncable="YES" codeGenerationType="manual/none">
+    <entity name="Cliente" representedClassName="Cliente" syncable="YES">
         <attribute name="nombre" attributeType="String" optional="NO" />
         <attribute name="documento" attributeType="String" optional="NO" />
         <relationship name="ventas" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Venta" inverseName="cliente" inverseEntity="Venta" />
     </entity>
-    <entity name="Venta" representedClassName="Venta" syncable="YES" codeGenerationType="manual/none">
+    <entity name="Venta" representedClassName="Venta" syncable="YES">
         <attribute name="fecha" attributeType="Date" optional="NO" />
         <attribute name="cantidad" attributeType="Integer 64" optional="NO" usesScalarValueType="YES" defaultValueString="0" />
         <attribute name="precioUnitario" attributeType="Double" optional="NO" usesScalarValueType="YES" defaultValueString="0" />
