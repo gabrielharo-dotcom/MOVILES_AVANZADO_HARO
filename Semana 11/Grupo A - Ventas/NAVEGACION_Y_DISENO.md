@@ -1,7 +1,5 @@
-# Cómo reviso las nueve pantallas en UIKit
+# Mi navegación UIKit y las nueve pantallas
 
-Guardé mi archivo `Pantallas.storyboard` **dentro de `VentasTecsup`**, para verlo en el navegador de Xcode. El documento contiene el Navigation Controller principal y las maquetas A1–A9.
+En `VentasTecsup/Pantallas.storyboard` coloqué un `UINavigationController` inicial y **conecté las nueve escenas A1–A9** mediante ocho botones con transiciones `Show`. Puedo seguir el recorrido de diseño A1 Ingreso → A2 Registro → A3 Productos → A4 Clientes → A5 Nueva venta → A6 Mis ventas → A7 Ventas del equipo → A8 Anulación → A9 Resumen. Puedo regresar usando la barra de navegación. En Xcode selecciono una escena en el lienzo y reduzco el zoom para visualizar los enlaces.
 
-Para **ejecutar la app**, abro `VentasTecsup.xcodeproj`. Mi aplicación inicia por `SceneDelegate` en `App.swift`, presenta el ingreso y, después del inicio de sesión, muestra las pestañas según mi rol mediante `UITabBarController`. Las interfaces funcionales están creadas mediante UIKit en archivos Swift; el Storyboard es visual y no sustituye esos controladores.
-
-Mantengo la implementación base en `manual` y la versión avanzada en `ai-assisted` y `main`. No he comprobado todavía la apertura del proyecto en Xcode 26.3 después de esta corrección, así que debo compilar y probar en mi Mac.
+Esta navegación del Storyboard es una **demostración visual del recorrido**, no sustituye la lógica de mi aplicación. Cuando ejecuto el proyecto desde Xcode, `SceneDelegate` en `App.swift` sigue abriendo la aplicación UIKit programática y sus pestañas según el rol; por eso no configuro `Pantallas.storyboard` como pantalla de inicio. En la rama `manual` mantengo un prototipo inicial y en `main` y `ai-assisted` conservo el código completo de ventas. Todavía debo comprobar el comportamiento y la compilación en mi Mac con Xcode 26.3.
