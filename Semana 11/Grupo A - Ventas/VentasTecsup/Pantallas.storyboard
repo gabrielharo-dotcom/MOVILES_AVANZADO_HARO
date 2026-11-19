@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="26300" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nav-001">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nav-001">
 <device id="retina6_12" orientation="portrait" appearance="light"/>
-<dependencies><plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="26300"/><capability name="Safe area layout guides" minToolsVersion="9.0"/><capability name="System colors in document resources" minToolsVersion="11.0"/></dependencies>
+<dependencies><plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/><capability name="Safe area layout guides" minToolsVersion="9.0"/><capability name="System colors in document resources" minToolsVersion="11.0"/></dependencies>
 <scenes>
 <scene sceneID="Scene-Nav"><objects><navigationController id="Nav-001" sceneMemberID="viewController"><navigationBar key="navigationBar" contentMode="scaleToFill" id="Bar-Nav"/><connections><segue destination="VC-001" kind="relationship" relationship="rootViewController" id="Segue-Root"/></connections></navigationController><placeholder placeholderIdentifier="IBFirstResponder" id="Responder-Nav" userLabel="First Responder" sceneMemberID="firstResponder"/></objects></scene>
 <scene sceneID="Scene-1"><objects><viewController storyboardIdentifier="Pantalla1" id="VC-001" sceneMemberID="viewController"><view key="view" contentMode="scaleToFill" id="View-1"><rect key="frame" x="0.0" y="0.0" width="393" height="852"/><subviews>
