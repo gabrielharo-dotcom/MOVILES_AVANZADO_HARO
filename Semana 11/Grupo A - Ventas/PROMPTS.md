@@ -1,9 +1,11 @@
-# Registro de asistencia con IA
+# Registro de uso de IA
 
-## Implementación del caso Ventas
+Contexto: Semana 11, app Grupo A UIKit y Core Data.
 
-- **Contexto**. Portafolio de Programación en Móviles Avanzado y consigna del Grupo A con maquetas A1 a A9.
-- **Tarea**. Implementar la app y preparar su publicación en GitHub. El usuario confirmó que corresponde el Grupo A.
-- **Restricciones**. UIKit, Core Data, cuatro entidades, roles Vendedor y Supervisor, reglas de stock, descuento e IGV, anulación con motivo, filtros y resumen. Registrar un commit por pantalla.
-- **Formato esperado**. Proyecto Xcode, instrucciones de uso y commits en `ai-assisted`, con integración de la entrega en `main`.
-- **Qué se hizo con la respuesta**. Se incorporó la implementación asistida. Se separaron las reglas de importes y de persistencia de los controles de UIKit para poder revisar los cálculos y permisos.
+Tarea: Corregir un proyecto Xcode que cerraba Xcode 26.3 y organizar main, manual y ai-assisted.
+
+Restricciones: No usar SwiftUI, mantener 9 pantallas, 4 entidades, roles, stock, IGV y anulaciones. No modificar otras semanas ni añadir colaboradores.
+
+Formato esperado: Proyecto nativo Xcode más documentación.
+
+Uso de la respuesta: Se reutilizó el código UIKit existente y se reconstruyó la configuración del proyecto usando una plantilla Xcode 26.3. Pendiente de comprobar en simulador. Incorporar aquí futuras consultas y cambios efectivamente realizados.
