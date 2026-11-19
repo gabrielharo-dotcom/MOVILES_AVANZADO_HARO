@@ -1,3 +1,7 @@
-# Mi diseño base UIKit
+# Cómo reviso las nueve pantallas en UIKit
 
-En este proyecto base incluí la navegación inicial y el diseño de las nueve pantallas en `DISEÑO_UKIT_9_PANTALLAS.storyboard` como referencia visual. Todavía no implementé en la rama manual toda la lógica de esas pantallas. Mi aplicación base funcional mantiene acceso, registro y productos; las funciones completas están en `ai-assisted` y `main`. No presento estas maquetas como pantallas funcionales ni como trabajo realizado sin asistencia.
+Guardé mi archivo `Pantallas.storyboard` **dentro de `VentasTecsup`**, para verlo en el navegador de Xcode. El documento contiene el Navigation Controller principal y las maquetas A1–A9.
+
+Para **ejecutar la app**, abro `VentasTecsup.xcodeproj`. Mi aplicación inicia por `SceneDelegate` en `App.swift`, presenta el ingreso y, después del inicio de sesión, muestra las pestañas según mi rol mediante `UITabBarController`. Las interfaces funcionales están creadas mediante UIKit en archivos Swift; el Storyboard es visual y no sustituye esos controladores.
+
+Mantengo la implementación base en `manual` y la versión avanzada en `ai-assisted` y `main`. No he comprobado todavía la apertura del proyecto en Xcode 26.3 después de esta corrección, así que debo compilar y probar en mi Mac.
